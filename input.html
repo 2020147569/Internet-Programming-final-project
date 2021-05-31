@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no">
         <link rel="stylesheet" type="text/css" href="main.css">
         <title>Team Project-input</title>
     </head>
@@ -11,12 +11,14 @@
             <h1>시간 기반의 장소 추천 서비스</h1>
         </header>
         <main>
-            <form method="post" action="output.html">
+            <form method="get" action="output.html">    <!--나중에 method="post"로 변경-->
                 <p>
-                    <label>인원수:<input type="number" name="?1" min="1" max="4" step="1" value="1" /></label>
+                    인원수<br>
+                    <label><input type="number" name="personnel" min="1" max="4" step="1" value="1" /></label>
                 </p>
                 <p>
-                    <label>시간:<input type="time" name="?2" step="60" />부터 ~ <input type="time" name="?3" step="60" />까지</label>
+                    시간<br>
+                    <label><input type="time" name="from1" step="60" />부터 ~ <input type="time" name="to1" step="60" />까지</label>
                     <br><button type="button">(+) 시간 추가하기</button>
                 </p>
                 <p>
@@ -28,9 +30,8 @@
                 </p>
             </form>
         </main>
-        <aside></aside>
         <footer>
-            <hr width="100%" color="black" size="1">
+            <hr>
             <h6>2020147549 윤민균, 2020147569 이승재, 2020147570 권동욱</h6>
         </footer>
     </body>
