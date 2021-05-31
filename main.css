@@ -13,27 +13,33 @@ img.wallpaper {
 /* input.html & output.html */
 
 body {
+    font-size: 1em;
     text-align: left;
     margin: 0 3.125em;
 }
 
 h1 {
+    font-size: 2em;
     text-align: center;
+}
+
+h6 {
+    font-size: 0.7em;
+    margin: 0.9em 0 0 0;
 }
 
 hr {
     width: 100%;
     height: 0.125em;
     background-color: black;
+    margin: auto 0;
     border: none;
 }
 
 /* input.html */
 
 p {
-    margin: 1.875em 0 0 0;
-    border: thin solid black;
-    padding: 0.625em;
+    margin: 1.8em 0;
 }
 
 /* output.html */
