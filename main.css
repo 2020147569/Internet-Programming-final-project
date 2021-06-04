@@ -1,45 +1,92 @@
-/* index.html */
-button.wallpaper {
-    border-style: none;
-    background-color: white;
-}
-
-img.wallpaper {
-    alt: wallpaper;
-    width: 100%;
-    height: 100%;
-}
-
 /* input.html & output.html */
+
+header {
+    font-family: "Black Gothic";
+    margin: auto 0;
+    padding: 1.2em 0 0.8em 0;
+    text-align: center;
+}
+
+nav {
+    position: absolute;
+    top: 0.52em;
+    left: 0.75em;
+    font-size: 1.875em;
+    color: #4169E1;
+    display: inline;
+}
 
 body {
     font-size: 1em;
     text-align: left;
-    margin: 0 3.125em;
+    margin: auto 0;
+    font-family: "SCDream2";
+    background-color: #DBF0FE;
 }
 
 h1 {
-    font-size: 2em;
-    text-align: center;
+    font-size: 2.2em;
+    display: inline;
 }
 
 h6 {
     font-size: 0.7em;
     margin: 0.9em 0 0 0;
+    height: 5em;
 }
 
-hr {
-    width: 100%;
-    height: 0.125em;
-    background-color: black;
-    margin: auto 0;
-    border: none;
+footer {
+    text-align: center;
 }
-
-/* input.html */
 
 p {
     margin: 1.8em 0;
+}
+
+div.sidenav {
+    width: 0;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background-color: #9DBCD4;
+    color: white;
+    overflow-x: hidden;
+    transition: 0.5s;
+}
+
+div.sidenav a {
+    position: absolute;
+    top: 0;
+    left: 4.05em;
+    text-decoration: none;
+    font-size: 3em;
+    color: white;
+}
+
+div#map {
+    text-align: center;
+    background-color: white;
+}
+
+form {
+    margin: 3.5em 0;
+}
+
+form p {
+    margin: 1em 3em 2.5em 0.8em;
+    font-size: 1em;
+}
+
+input {
+    border: 1px solid white;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+
+input[name="personnel"] {
+    width: 100%;
 }
 
 /* output.html */
