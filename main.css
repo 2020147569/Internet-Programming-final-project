@@ -5,6 +5,7 @@ header {
     margin: auto 0;
     padding: 1.2em 0 0.8em 0;
     text-align: center;
+    position: relative;
 }
 
 nav {
