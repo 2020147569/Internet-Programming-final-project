@@ -5,13 +5,12 @@ header {
     margin: auto 0;
     padding: 1.2em 0 0.8em 0;
     text-align: center;
-    position: relative;
 }
 
 nav {
-    position: absolute;
-    top: 0.52em;
-    left: 0.75em;
+    position: relative;
+    top: -0.1em;
+    left: -2em;
     font-size: 1.875em;
     color: #4169E1;
     display: inline;
