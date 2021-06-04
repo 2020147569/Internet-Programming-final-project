@@ -18,13 +18,13 @@
                 <form method="post" action="#">
                     <p>
                         # PERSONNEL<br>
-                        <label><input type="number" name="personnel" min="1" max="4" step="1" value="1" /></label>
+                        <label><input type="number" class="personnel" name="personnel" min="1" max="4" step="1" value="1" /></label>
                     </p>
                     <p>
                         # TIME<br>
-                        <label><input type="time" name="from1" step="60" />부터 ~
-                            <input type="time" name="to1" step="60" />까지
-                                <button type="button" onclick="deletetime()">(-)</button></label>
+                        <label><input type="time"class="from" name="from1" step="60" /> ~
+                            <input type="time" class="to" name="to1" step="60" />
+                                <button type="button" class="deletetime" onclick="deletetime()">&#8861;</button></label>
                         <br><button type="button" onclick="addtime()">(+) 시간 추가하기</button>
                     </p>
                     <p>

@@ -63,6 +63,7 @@ div.sidenav a {
     text-decoration: none;
     font-size: 3em;
     color: white;
+    display: block;
 }
 
 div#map {
@@ -80,13 +81,32 @@ form p {
 }
 
 input {
+    height: 1.5em;
     border: 1px solid white;
     border-radius: 3px;
     box-sizing: border-box;
+    background-color: white;
+    transition: 0.5s;
+    outline: none;
 }
 
-input[name="personnel"] {
+input:focus {
+    border: 3px solid #242526;
+}
+
+input.personnel {
     width: 100%;
+}
+
+input.from, .to {
+    width: 35%;
+}
+
+button.deletetime {
+    font-size: 1em;
+    border: none;
+    color: red;
+    background-color: #9DBCD4;
 }
 
 /* output.html */
