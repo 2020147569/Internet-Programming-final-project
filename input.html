@@ -22,9 +22,9 @@
                     </p>
                     <p>
                         # TIME<br>
-                        <label><input type="time"class="from" name="from1" step="60" /> ~
-                            <input type="time" class="to" name="to1" step="60" />
-                                <button type="button" class="deletetime" onclick="deletetime()">&#8861;</button></label>
+                        <label><input type="time" class="from" id="from1" name="from1" step="60" /> ~
+                            <input type="time" class="to" id="tp1" name="to1" step="60" />
+                                <button type="button" id="button1" class="deletetime" onclick="deletetime()">&#8861;</button></label>
                         <br><button type="button" onclick="addtime()">(+) 시간 추가하기</button>
                     </p>
                     <p>
@@ -38,11 +38,12 @@
             </div>
         </aside>
         <main>
-            <div id="map"><br><br><br><br><br><br><br>MAP DISPLAY<br><br><br><br><br><br><br></div>
+            <div id="map">MAP DISPLAY</div>
         </main>
         <footer>
             <h6>2020147549 윤민균, 2020147569 이승재, 2020147570 권동욱</h6>
         </footer>
         <script type="text/javascript" src="script.js"></script>
+        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6073f1076cb681a3fbce57de7470bc7c"></script>
     </body>
 </html>
