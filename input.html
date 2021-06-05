@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no">
+        <link rel="stylesheet" type="text/css" href="fonts.css">
+        <link rel="stylesheet" type="text/css" href="main.css">
+        <title>Team Project-input</title>
+    </head>
+    <body>
+        <header>
+            <nav><span onclick="opennav()">&#9776;</span></nav>
+            <h1>시간 기반의 장소 추천 서비스</h1>
+        </header>
+        <aside>
+            <div id="sidenav" class="sidenav">
+                <a href="javascript:void(0)" onclick="closenav()">&times;</a>
+                <form method="post" action="#">
+                    <p>
+                        # PERSONNEL<br>
+                        <label><input type="number" class="personnel" name="personnel" min="1" max="4" step="1" value="1" /></label>
+                    </p>
+                    <p>
+                        # TIME<br>
+                        <label><input type="time" class="from" id="from1" name="from1" step="60" /> ~
+                            <input type="time" class="to" id="tp1" name="to1" step="60" />
+                                <button type="button" id="button1" class="deletetime" onclick="deletetime()">&#8861;</button></label>
+                        <br><button type="button" onclick="addtime()">(+) 시간 추가하기</button>
+                    </p>
+                    <p>
+                        선호도 checkbox 만들기<br>
+                        <label><input type="checkbox" name="?4" value="?">?</label>
+                    </p>
+                    <p>
+                        <button type="submit">확인</button> <button type="reset">지우기</button>
+                    </p>
+                </form>
+            </div>
+        </aside>
+        <main>
+            <div id="map"></div>
+        </main>
+        <footer>
+            <h6>2020147549 윤민균, 2020147569 이승재, 2020147570 권동욱</h6>
+        </footer>
+        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6073f1076cb681a3fbce57de7470bc7c"></script>
+        <script type="text/javascript" src="script.js"></script>
+    </body>
+</html>
