@@ -1,4 +1,6 @@
-[{"type": "일반 음식점" , "min": "1", "max":"2", "limit": "4"},
+[{"type": "양식" , "min": "1", "max":"2", "limit": "4"},
+{"type": "중식" , "min": "1", "max":"2", "limit": "4"},
+{"type": "일식" , "min": "1", "max":"2", "limit": "4"},
 {"type": "PC방" , "min": "0", "max":" ", "limit": "4"},
 {"type": "볼링장" , "min": "0.5", "max":" ", "limit": "4"},
 {"type": "노래방" , "min": "1", "max":"2", "limit": "4"},
