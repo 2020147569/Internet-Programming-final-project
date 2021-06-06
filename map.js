@@ -101,7 +101,7 @@ var ECTimageSrc = "ECTMARKER.png";
   positions[i].place_url  +
   '" target="_blank" class="link">홈페이지</a></div>' + 
   '            </div>' + 
-  '<a href = "navigation.html">길찾기 안내 시작</a>'//길찾기 버튼
+  '<a href = "navigation.html">길찾기 안내 시작</a>' +//길찾기 버튼
   '        </div>' + 
   '    </div>' +    
   '</div>';
