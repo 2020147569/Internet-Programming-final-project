@@ -80,6 +80,9 @@ var ECTimageSrc = "ECTMARKER.png";
     image : markerImage
   }); // 마커 이미지 
 
+
+
+  //커스텀 오버레이 생성
   var content = '<div class="wrap">' + 
   '    <div class="info">' + 
   '        <div class="title">' + 
@@ -98,7 +101,7 @@ var ECTimageSrc = "ECTMARKER.png";
   positions[i].place_url  +
   '" target="_blank" class="link">홈페이지</a></div>' + 
   '            </div>' + 
-  '<button class = "navigation_button">길찾기 안내 시작</button>'
+  '<a href = "navigation.html">길찾기 안내 시작</a>'//길찾기 버튼
   '        </div>' + 
   '    </div>' +    
   '</div>';
@@ -117,7 +120,7 @@ var ECTimageSrc = "ECTMARKER.png";
 
 }
 
-//커스텀 오버레이 생성
+
 
 
 //길찾기 버튼
