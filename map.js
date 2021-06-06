@@ -55,7 +55,7 @@ var FoodimageSrc = "FOODMARKER.png";
 var ECTimageSrc = "ECTMARKER.png";
 
   for(let i = 0; i < positions.length; i ++){
-  var poscor = new kakao.maps.LatLng(positions[i].x, positions[i].y)
+  var poscor = new kakao.maps.LatLng(positions[i].y, positions[i].x)
 
   var imageSize = new kakao.maps.Size(20, 20);
 
