@@ -9,7 +9,7 @@ $("#submitButton").click(function () {
             preference: $("input[name=preference]").val()
         },
         success: function() {
-            alert("success!");
+            console.log('data submit success');
         }
     })
 })
