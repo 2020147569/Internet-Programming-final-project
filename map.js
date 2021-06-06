@@ -77,10 +77,48 @@ var ECTimageSrc = "ECTMARKER.png";
     map: map, // 마커를 표시할 지도
     position: positions[i].latlng, // 마커를 표시할 위치
     title : positions[i].place_name, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-    image : markerImage // 마커 이미지 
-});
+    image : markerImage
+  }); // 마커 이미지 
+
+  var content = '<div class="wrap">' + 
+  '    <div class="info">' + 
+  '        <div class="title">' + 
+  positions[i].place_name + 
+  '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' + 
+  '        </div>' + 
+  '        <div class="body">'
+  '            <div class="desc">' + 
+  '             <div class = "place_category">' +
+  positions[i].category_name    +
+  '             </div>'+
+  '                <div class="ellipsis">'+
+  positions[i].road_address_name  +
+  '                             </div>' + 
+  '                <div><a href="'+
+  positions[i].place_url  +
+  '" target="_blank" class="link">홈페이지</a></div>' + 
+  '            </div>' + 
+  '<button class = "navigation_button">길찾기 안내 시작</button>'
+  '        </div>' + 
+  '    </div>' +    
+  '</div>';
+
+
+
+    var overlay = new kakao.maps.CustomOverlay({
+        content: content,
+        map: map,
+        position: marker.getPosition()       
+    });
+
+    kakao.maps.event.addListener(marker, 'click', function() {
+        overlay.setMap(map);
+    });
+
 }
 
 //커스텀 오버레이 생성
+
+
 //길찾기 버튼
 //길찾기
