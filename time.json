@@ -36,7 +36,7 @@
 {"type": "테마거리" , "min": 2, "max":24, "limit": 4, "out": true},
 {"type": "실내낚시터" , "min": 1.5, "max":24, "limit": 4, "out": false},
 {"type": "영화관" , "min": 2, "max":3, "limit": 4, "out": false},
-{"type": "시장" , "min": 0.5, "max":24, "limit": 4, "out": false},
+{"type": "시장" , "min": 0.5, "max":24, "limit": 4, "out": true},
 {"type": "서점" , "min": 0, "max":2, "limit": 4, "out": false},
 {"type": "수목원" , "min": 1, "max":2, "limit": 4, "out": true},
 {"type": "전망대" , "min": 0.5, "max":2, "limit": 4, "out": false}
