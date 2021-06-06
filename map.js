@@ -58,7 +58,7 @@ var ECTimageSrc = "ECTMARKER.png";
       let cor = (positions[i].x, positions[i].y);
   positions[i].lating = "new kakao.maps.LatLng" + cor;
 
-  var imageSize = new kakao.maps.Size(100, 100);
+  var imageSize = new kakao.maps.Size(20), 20);
 
   var category = positions[i].category_name;
 
