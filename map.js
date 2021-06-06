@@ -117,6 +117,9 @@ var ECTimageSrc = "ECTMARKER.png";
         overlay.setMap(map);
     });
 
+    function closeOverlay() {
+        overlay.setMap(null);     
+    }
 }
 
 
