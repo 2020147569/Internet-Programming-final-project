@@ -1,10 +1,3 @@
-<<<<<<< HEAD
-/* input.html */
-
-var i = 1;
-
-=======
->>>>>>> 5aded86 (message)
 function opennav () {
     document.getElementById("sidenav").style.width = "15em";
 }
@@ -13,17 +6,6 @@ function closenav () {
     document.getElementById("sidenav").style.width = "0";
 }
 
-<<<<<<< HEAD
-function addtime () {
-    i++;
-    const inputfrom = document.createElement('input');
-    const inputto = document.createElement('input');
-}
-
-function deletetime () {
-    
-}
-=======
 function selectAll (selectAll) {
     const checkboxes = document.getElementsByName("preference");
     
@@ -117,4 +99,3 @@ function display (button) {
         }
     }
 }
->>>>>>> 5aded86 (message)
