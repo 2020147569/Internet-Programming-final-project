@@ -11,22 +11,22 @@ function selectAll (selectAll) {
     
     if (selectAll.id == "selectall1")
     {
-        for (var i = 0; i < 3; i++) {
+        for (var i = 0; i < 7; i++) {
             checkboxes[i].checked = selectAll.checked;
         }
     } if (selectAll.id == "selectall2")
     {
-        for (var i = 3; i < 18; i++) {
+        for (var i = 7; i < 22; i++) {
             checkboxes[i].checked = selectAll.checked;
         }
     } if (selectAll.id == "selectall3")
     {
-        for (var i = 18; i < 25; i++) {
+        for (var i = 22; i < 27; i++) {
             checkboxes[i].checked = selectAll.checked;
         }
     } if (selectAll.id == "selectall4")
     {
-        for (var i = 25; i < 33; i++) {
+        for (var i = 27; i < 33; i++) {
             checkboxes[i].checked = selectAll.checked;
         }
     } if (selectAll.id == "selectall5")
