@@ -84,6 +84,7 @@ div#map {
     height: 21.875em;
     text-align: center;
     background-color: white;
+    z-index: 0;
 }
 
 form {
