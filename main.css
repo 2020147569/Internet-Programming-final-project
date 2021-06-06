@@ -190,6 +190,8 @@ button#submitButton, button[type=reset] {
     border: 1px solid white;
     border-radius: 3px;
     background-color: white;
+    width: 40%;
+    margin-left: 4%;
 }
 
 button#submitButton:active, button[type=reset]:active {
@@ -201,5 +203,14 @@ button#submitButton:active, button[type=reset]:active {
 label#checkbox1, label#checkbox2, label#checkbox3, label#checkbox4, label#checkbox5, label#checkbox6 {
     font-size: 0.7em;
     color: black;
+    display: none;
+}
+
+span#zerothTitle {
+    font-family: "SCDream3";
+    color: black;
+}
+
+label#zerothLabel {
     display: none;
 }
