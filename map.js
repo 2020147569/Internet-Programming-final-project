@@ -25,7 +25,8 @@ if (navigator.geolocation) {
         var marker = new kakao.maps.Marker({  
             map: map, 
             position: locPosition,
-            image : nowimageSrc
+            image : nowimageSrc,
+            clickable : true
         });
 
         map.setCenter(locPosition); 
@@ -116,7 +117,7 @@ var ECTimageSrc = "ECTMARKER.png";
     });
 
     kakao.maps.event.addListener(marker, 'click', function() {
-        overlay.setMap(map);
+        overlay.open(map);
     });
 
     function closeOverlay() {
