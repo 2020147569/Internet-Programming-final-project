@@ -17,7 +17,7 @@ $("#submitButton").click(function () {
             personnel: $("input[name=personnel]").val(),
             from: $("input[name=from]").val(),
             to: $("input[name=to]").val(),
-            preference: $("input[name=preference]").val(),
+            preference: $("input[name=preference]").serialize(),
             latitude: latitude,
             longitude: longitude
         },
