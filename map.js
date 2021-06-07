@@ -1,7 +1,7 @@
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
     mapOption = { 
         center: new kakao.maps.LatLng(37.561782, 126.936419), // 지도의 중심좌표
-        level: 3 // 지도의 확대 레벨
+        level: 5 // 지도의 확대 레벨
     };
 
 var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
@@ -100,10 +100,7 @@ var ECTimageSrc = "ECTMARKER.png";
   positions[i].place_url  +
   '" target="_blank" class="link">홈페이지</a></div>' + 
   '            </div>' + 
-  
-  '<div><a href = "navigation.html">길찾기 안내 시작</a></div>' +//길찾기 버튼
-
-
+  '<div class = "navigation_button"><a href = "navigation.html">길찾기 안내 시작</a></div>' +//길찾기 버튼
   '        </div>' + 
   '    </div>' +    
   '</div>';
