@@ -104,14 +104,14 @@ var ECTimageSrc = "ECTMARKER.png";
   '    </div>' +    
   '</div>';
 
-
+  var overlay = new kakao.maps.CustomOverlay({
+    content: content,
+    map: map,
+    position: marker.getPosition()       
+});
 
     kakao.maps.event.addListener(marker, 'click', function() {
-        var overlay = new kakao.maps.CustomOverlay({
-            content: content,
-            map: map,
-            position: marker.getPosition()       
-        });
+    
         overlay.setMap(map);
     });
 
