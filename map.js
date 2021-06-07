@@ -98,9 +98,6 @@ var ECTimageSrc = "ECTMARKER.png";
   '주소: ' +
   positions[i].road_address_name  +
   '                             </div>' +
-  '<div class = "distance"> 거리'+
-  getDistanceFromLatLonInKm(positions[i].y,positions[i].x,position.coords.latitude,position.coords.longitude)+
-  '</div>' +
   '                <div><a href="'+
   positions[i].place_url  +
   '" target="_blank" class="link">홈페이지</a></div>' + 
