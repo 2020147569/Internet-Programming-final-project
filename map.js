@@ -55,7 +55,7 @@ var FoodimageSrc = "FOODMARKER.png";
 var ECTimageSrc = "ECTMARKER.png";
 
   for(let i = 0; i < positions.length; i ++){
-  var poscor = new kakao.maps.LatLng(positions[i].y, positions[i].x)
+  var poscor = new kakao.maps.LatLng(positions[i].y, positions[i].x);
 
   var imageSize = new kakao.maps.Size(40, 40);
 
@@ -99,8 +99,8 @@ var ECTimageSrc = "ECTMARKER.png";
   '                <div><a href="'+
   positions[i].place_url  +
   '" target="_blank" class="link">홈페이지</a></div>' + 
-  '            </div>' + 
   '<div class = "navigation_button"><a href = "navigation.html">길찾기 안내 시작</a></div>' +//길찾기 버튼
+  '            </div>' + 
   '        </div>' + 
   '    </div>' +    
   '</div>';
