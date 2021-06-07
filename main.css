@@ -214,5 +214,5 @@ div#map {
     height: 30em;
     text-align: center;
     background-color: white;
-    z-index: -1;
+    z-index: 0;
 }
