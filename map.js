@@ -113,7 +113,7 @@ var ECTimageSrc = "ECTMARKER.png";
     });
 
     kakao.maps.event.addListener(marker, 'click', function() {
-        overlay.open(map);
+        overlay.open(map, marker);
     });
 
     function closeOverlay() {
