@@ -91,10 +91,6 @@ var ECTimageSrc = "ECTMARKER.png";
   '        </div>' + 
   '        <div class="body">'+
   '            <div class="desc">' + 
-  '             <div class = "place_category">' +
-  '카테고리: '+
-  positions[i].category_name    +
-  '             </div>'+
   '                <div class="ellipsis">'+
   '주소: ' +
   positions[i].road_address_name  +
