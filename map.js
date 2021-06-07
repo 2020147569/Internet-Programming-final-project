@@ -110,8 +110,9 @@ var ECTimageSrc = "ECTMARKER.png";
     position: marker.getPosition()       
 });
 
+    overlay.setMap(null);    
+
     kakao.maps.event.addListener(marker, 'click', function() {
-    
         overlay.setMap(map);
     });
 
@@ -124,8 +125,7 @@ var ECTimageSrc = "ECTMARKER.png";
     function closeOverlay() {
         overlay.setMap(null);     
     }
-}
-
+  }
 
 
 
