@@ -91,11 +91,16 @@ var ECTimageSrc = "ECTMARKER.png";
   '        <div class="body">'+
   '            <div class="desc">' + 
   '             <div class = "place_category">' +
+  '카테고리: '+
   positions[i].category_name    +
   '             </div>'+
   '                <div class="ellipsis">'+
+  '주소: ' +
   positions[i].road_address_name  +
-  '                             </div>' + 
+  '                             </div>' +
+  '<div class = "distance"> 거리'+
+  getDistanceFromLatLonInKm(positions[i].y,positions[i].x,position.coords.latitude,position.coords.longitude)+
+  '</div>' +
   '                <div><a href="'+
   positions[i].place_url  +
   '" target="_blank" class="link">홈페이지</a></div>' + 
@@ -127,3 +132,14 @@ var ECTimageSrc = "ECTMARKER.png";
 
 //길찾기 버튼
 //길찾기
+function getDistanceFromLatLonInKm(lat1,lng1,lat2,lng2) { 
+    function deg2rad(deg) { 
+        return deg * (Math.PI/180) 
+    } 
+    var R = 6371; // Radius of the earth in km 
+    var dLat = deg2rad(lat2-lat1); // deg2rad below 
+    var dLon = deg2rad(lng2-lng1); 
+    var a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.sin(dLon/2) * Math.sin(dLon/2); 
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+    var d = R * c; // Distance in km return d; 
+}
