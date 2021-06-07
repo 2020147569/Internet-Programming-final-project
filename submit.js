@@ -6,6 +6,8 @@ $("#submitButton").click(function () {
             latitude = position.coords.latitude;
             longitude = position.coords.longitude;
         });
+    } else {
+        window.alert("오류: 사용자 위치 정보 액세스 권한을 허용해주세요");
     }
 
     $.ajax ({

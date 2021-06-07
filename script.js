@@ -6,6 +6,24 @@ function closenav () {
     document.getElementById("sidenav").style.width = "0";
 }
 
+function preferAll (preferAll) {
+    const checkboxes = document.getElementsByTagName("input");
+    for (var i = 0; i < checkboxes.length; i++) {
+        if (checkboxes[i].type == "checkbox") {
+            checkboxes[i].checked = preferAll.checked;
+        }
+    }
+}
+
+function checkAll () {
+    const checkboxes = document.getElementsByTagName("input");
+    for (var i = 0; i < checkboxes.length; i++) {
+        if (checkboxes[i].type == "checkbox") {
+            checkboxes[i].checked = true;
+        }
+    }
+}
+
 function selectAll (selectAll) {
     const checkboxes = document.getElementsByName("preference");
     
@@ -43,6 +61,17 @@ function selectAll (selectAll) {
 }
 
 function display (button) {
+    if (button.id == "zerothButton") {
+        const content = document.getElementById("zerothLabel");
+        if (content.style.display == "none") {
+            content.style.display = "inline";
+            button.innerHTML = "&utrif;";
+        } else {
+            content.style.display = "none";
+            button.innerHTML = "&dtrif;";
+        }
+    }
+
     if (button.id == "button1") {
         const content = document.getElementById("checkbox1");
         if (content.style.display == "none") {
@@ -99,3 +128,53 @@ function display (button) {
         }
     }
 }
+
+function checkSelectAll (child) {
+    const label = child.parentNode.parentNode;
+    const checkboxes = label.querySelectorAll("input[name='preference']");
+    const checked = label.querySelectorAll("input[name='preference']:checked");
+
+    if (checkboxes.length == checked.length) {
+        if (label.id == "checkbox1") {
+            const selectall = document.getElementById("selectall1");
+            selectall.checked = true;
+        } if (label.id == "checkbox2") {
+            const selectall = document.getElementById("selectall2");
+            selectall.checked = true;
+        } if (label.id == "checkbox3") {
+            const selectall = document.getElementById("selectall3");
+            selectall.checked = true;
+        } if (label.id == "checkbox4") {
+            const selectall = document.getElementById("selectall4");
+            selectall.checked = true;
+        } if (label.id == "checkbox5") {
+            const selectall = document.getElementById("selectall5");
+            selectall.checked = true;
+        } if (label.id == "checkbox6") {
+            const selectall = document.getElementById("selectall6");
+            selectall.checked = true;
+        }
+    } else {
+        if (label.id == "checkbox1") {
+            const selectall = document.getElementById("selectall1");
+            selectall.checked = false;
+        } if (label.id == "checkbox2") {
+            const selectall = document.getElementById("selectall2");
+            selectall.checked = false;
+        } if (label.id == "checkbox3") {
+            const selectall = document.getElementById("selectall3");
+            selectall.checked = false;
+        } if (label.id == "checkbox4") {
+            const selectall = document.getElementById("selectall4");
+            selectall.checked = false;
+        } if (label.id == "checkbox5") {
+            const selectall = document.getElementById("selectall5");
+            selectall.checked = false;
+        } if (label.id == "checkbox6") {
+            const selectall = document.getElementById("selectall6");
+            selectall.checked = false;
+        }
+    }
+}
+
+window.addEventListener("DOMContentLoaded", checkAll, false);

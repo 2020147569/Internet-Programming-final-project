@@ -79,14 +79,6 @@ div.sidenav a:hover {
     color: black;
 }
 
-div#map {
-    width: 100%;
-    height: 21.875em;
-    text-align: center;
-    background-color: white;
-    z-index: 0;
-}
-
 form {
     margin: 3.5em 0;
 }
@@ -190,6 +182,8 @@ button#submitButton, button[type=reset] {
     border: 1px solid white;
     border-radius: 3px;
     background-color: white;
+    width: 40%;
+    margin-left: 4%;
 }
 
 button#submitButton:active, button[type=reset]:active {
@@ -202,4 +196,23 @@ label#checkbox1, label#checkbox2, label#checkbox3, label#checkbox4, label#checkb
     font-size: 0.7em;
     color: black;
     display: none;
+}
+
+span#zerothTitle {
+    font-family: "SCDream3";
+    color: black;
+}
+
+label#zerothLabel {
+    display: none;
+}
+
+/* map */
+
+div#map {
+    width: 100%;
+    height: 30em;
+    text-align: center;
+    background-color: white;
+    z-index: 0;
 }
