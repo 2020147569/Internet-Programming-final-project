@@ -57,7 +57,7 @@ var ECTimageSrc = "ECTMARKER.png";
   for(let i = 0; i < positions.length; i ++){
   var poscor = new kakao.maps.LatLng(positions[i].y, positions[i].x)
 
-  var imageSize = new kakao.maps.Size(20, 20);
+  var imageSize = new kakao.maps.Size(40, 40);
 
   var category = positions[i].category_name;
 
@@ -88,7 +88,7 @@ var ECTimageSrc = "ECTMARKER.png";
   positions[i].place_name + 
   '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' + 
   '        </div>' + 
-  '        <div class="body">'
+  '        <div class="body">'+
   '            <div class="desc">' + 
   '             <div class = "place_category">' +
   positions[i].category_name    +
@@ -100,7 +100,10 @@ var ECTimageSrc = "ECTMARKER.png";
   positions[i].place_url  +
   '" target="_blank" class="link">홈페이지</a></div>' + 
   '            </div>' + 
-  '<a href = "navigation.html">길찾기 안내 시작</a>' +//길찾기 버튼
+  
+  '<div><a href = "navigation.html">길찾기 안내 시작</a></div>' +//길찾기 버튼
+
+
   '        </div>' + 
   '    </div>' +    
   '</div>';
