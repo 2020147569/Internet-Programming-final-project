@@ -1,4 +1,6 @@
 $("#submitButton").click(function () {
+    window.location.href = "./loading.html";
+
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (position) {
             var latitude = position.coords.latitude;
@@ -18,6 +20,13 @@ $("#submitButton").click(function () {
                 success: function(data) {
                     localStorage.clear();
                     localStorage.setItem('item', data);
+                    clearInterval(id1);
+                    time1 = 0;
+                    loading_article.innerHTML = "Loading";
+                    clearInterval(id2);
+                    time2 = 0;
+                    loading_footer.innerHTMl = "소요 시간: &nbsp;초";
+                    window.location.href = "./main.html";
                 }
             })
         });

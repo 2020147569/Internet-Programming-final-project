@@ -22,6 +22,13 @@ function checkAll () {
             checkboxes[i].checked = true;
         }
     }
+
+    var fromtime = new Date().toISOString().slice(11, 16);
+    if (9 <= fromtime.slice(0, 2) && fromtime.slice(0, 2) <= 21) {
+        document.querySelector("input[name='from']").value = fromtime;
+    } else {
+        document.querySelector("input[name='from']").value = "09:00";
+    }
 }
 
 function selectAll (selectAll) {
@@ -29,35 +36,37 @@ function selectAll (selectAll) {
     
     if (selectAll.id == "selectall1")
     {
-        for (var i = 0; i < 7; i++) {
+        for (var i = 0; i < 6; i++) {
             checkboxes[i].checked = selectAll.checked;
         }
     } if (selectAll.id == "selectall2")
     {
-        for (var i = 7; i < 22; i++) {
+        for (var i = 6; i < 21; i++) {
             checkboxes[i].checked = selectAll.checked;
         }
     } if (selectAll.id == "selectall3")
     {
-        for (var i = 22; i < 27; i++) {
+        for (var i = 21; i < 26; i++) {
             checkboxes[i].checked = selectAll.checked;
         }
     } if (selectAll.id == "selectall4")
     {
-        for (var i = 27; i < 33; i++) {
+        for (var i = 26; i < 32; i++) {
             checkboxes[i].checked = selectAll.checked;
         }
     } if (selectAll.id == "selectall5")
     {
-        for (var i = 33; i < 40; i++) {
+        for (var i = 32; i < 39; i++) {
             checkboxes[i].checked = selectAll.checked;
         }
     } if (selectAll.id == "selectall6")
     {
-        for (var i = 40; i < checkboxes.length; i++) {
+        for (var i = 39; i < checkboxes.length; i++) {
             checkboxes[i].checked = selectAll.checked;
         }
     }
+
+    zerothCheck();
 }
 
 function display (button) {
@@ -174,6 +183,20 @@ function checkSelectAll (child) {
             const selectall = document.getElementById("selectall6");
             selectall.checked = false;
         }
+    }
+
+    zerothCheck();
+}
+
+function zerothCheck () {
+    const zerothInput = document.getElementById("zerothInput");
+    const checkboxes = document.querySelectorAll("input[name='preference']");
+    const checked = document.querySelectorAll("input[name='preference']:checked");
+
+    if (checkboxes.length == checked.length) {
+        zerothInput.checked = true;
+    } else {
+        zerothInput.checked = false;
     }
 }
 
