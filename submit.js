@@ -2,7 +2,7 @@ $("#submitButton").click(function () {
     const personnel_val = $("input[name=personnel]").val();
     const from_val = $("input[name=from]").val();
     const to_val = $("input[name=to]").val();
-    const prfernece_val = $("input[name=preference]").serialize();
+    const preference_val = $("input[name=preference]").serialize();
 
     window.location.href = "./loading.html";
 
