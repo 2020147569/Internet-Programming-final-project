@@ -57,6 +57,10 @@ $("#submitButton").click(function () {
                     l2.innerHTML = "";
                     document.getElementById("loading").style.width = "0%";
                     document.getElementById("loading").style.padding = "0";
+                },
+                error: function(){
+                    window.alert("error occured\nIf you didn't choose any category, please choose one.\nOtherwise, server may be under regular inspection.");
+                    location.reload();
                 }
             })
         });
