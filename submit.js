@@ -1,42 +1,62 @@
 $("#submitButton").click(function () {
-    const personnel_val = $("input[name=personnel]").val();
-    const from_val = $("input[name=from]").val();
-    const to_val = $("input[name=to]").val();
-    const preference_val = $("input[name=preference]").serialize();
+    document.getElementById("loading").style.width = "100%";
+    document.getElementById("loading").style.padding = "0 0 0 30%";
 
-    window.location.href = "./loading.html";
+    const l1 = document.getElementById("l1");
+    const l2 = document.getElementById("l2");
 
-    window.alert(personnel_val);
+    var time1 = 0;
+    var id1 = setInterval(function () {
+        time1++;
+        if (time1 % 4 == 0) {
+            l1.innerHTML = "";
+            l1.innerHTML = "Loading"
+        } else if (time1 % 4 == 1) {
+            l1.innerHTML = "";
+            l1.innerHTML = "Loading ."
+        } else if (time1 % 4 == 2) {
+            l1.innerHTML = "";
+            l1.innerHTML = "Loading . ."
+        } else {
+            l1.innerHTML = "";
+            l1.innerHTML = "Loading . . ."
+        }
+    }, 800);
+
+    var time2 = 0;
+    var id2 = setInterval(function () {
+        time2++;
+        l2.innerHTML = "";
+        l2.innerHTML = "소요 시간: &nbsp;" + String(time2) + "초";
+    }, 1000);
 
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (position) {
             var latitude = position.coords.latitude;
             var longitude = position.coords.longitude;
 
-            window.alert(personnel_val + "###");
-
             $.ajax ({
                 url: "https://pacific-garden-17851.herokuapp.com/",
                 type: "POST",
                 data: {
-                    personnel: personnel_val,
-                    from: from_val,
-                    to: to_val,
-                    preference: preference_val,
+                    personnel: $("input[name=personnel]").val(),
+                    from: $("input[name=from]").val(),
+                    to: $("input[name=to]").val(),
+                    preference: $("input[name=preference]").serialize(),
                     latitude: latitude,
                     longitude: longitude
                 },
                 success: function(data) {
                     localStorage.clear();
                     localStorage.setItem('item', data);
-                    window.alert("success!");
                     clearInterval(id1);
                     time1 = 0;
-                    loading_article.innerHTML = "Loading";
+                    l1.innerHTML = "";
                     clearInterval(id2);
                     time2 = 0;
-                    loading_footer.innerHTMl = "소요 시간: &nbsp;초";
-                    window.location.href = "./main.html";
+                    l2.innerHTML = "";
+                    document.getElementById("loading").style.width = "0%";
+                    document.getElementById("loading").style.padding = "0";
                 }
             })
         });
