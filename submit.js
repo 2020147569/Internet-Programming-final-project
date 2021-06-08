@@ -1,4 +1,11 @@
 $("#submitButton").click(function () {
+    const personnel_val = $("input[name=personnel]").val();
+    const from_val = $("input[name=from]").val();
+    const to_val = $("input[name=to]").val();
+    const prfernece_val = $("input[name=preference]").serialize();
+
+    window.location.href = "./loading.html";
+
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (position) {
             var latitude = position.coords.latitude;
@@ -8,10 +15,10 @@ $("#submitButton").click(function () {
                 url: "https://pacific-garden-17851.herokuapp.com/",
                 type: "POST",
                 data: {
-                    personnel: $("input[name=personnel]").val(),
-                    from: $("input[name=from]").val(),
-                    to: $("input[name=to]").val(),
-                    preference: $("input[name=preference]").serialize(),
+                    personnel: personnel_val,
+                    from: from_val,
+                    to: to_val,
+                    preference: preference_val,
                     latitude: latitude,
                     longitude: longitude
                 },
@@ -28,8 +35,6 @@ $("#submitButton").click(function () {
                     window.location.href = "./main.html";
                 }
             })
-        }).done(function (data) {
-            window.location.href = "./loading.html";
         });
     } else {
         window.alert("오류: 사용자 위치 정보 액세스 권한을 허용해주세요");
