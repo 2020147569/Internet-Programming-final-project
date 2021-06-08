@@ -6,6 +6,8 @@ $("#submitButton").click(function () {
 
     window.location.href = "./loading.html";
 
+    window.alert(personnel_val);
+
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (position) {
             var latitude = position.coords.latitude;
