@@ -13,6 +13,8 @@ $("#submitButton").click(function () {
             var latitude = position.coords.latitude;
             var longitude = position.coords.longitude;
 
+            window.alert(personnel_val + "###");
+
             $.ajax ({
                 url: "https://pacific-garden-17851.herokuapp.com/",
                 type: "POST",
