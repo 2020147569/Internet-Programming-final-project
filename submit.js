@@ -1,10 +1,9 @@
 $("#submitButton").click(function () {
-    /*window.location.href = "./loading.html";*/
-
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (position) {
             var latitude = position.coords.latitude;
             var longitude = position.coords.longitude;
+            window.location.href = "./loading.html";
 
             $.ajax ({
                 url: "https://pacific-garden-17851.herokuapp.com/",
