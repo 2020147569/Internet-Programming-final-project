@@ -224,7 +224,7 @@ div#loading {
     text-align: center;
     width: 0%;
     height: 100%;
-    background-color: #9DBCD4;
+    background-color: #DBF0FE;
     z-index: 2;
     position: absolute;
     box-sizing: border-box;
@@ -236,7 +236,7 @@ article#l1 {
     font-weight: 1000;
     margin-top: 38vh;
     text-align: left;
-    color: white;
+    color: black;
 }
 
 article#l2 {
@@ -245,5 +245,5 @@ article#l2 {
     margin-top: 5vh;
     margin-left: 10vw;
     text-align: left;
-    color: white;
+    color: black;
 }
