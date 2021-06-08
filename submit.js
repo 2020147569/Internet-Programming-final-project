@@ -3,7 +3,6 @@ $("#submitButton").click(function () {
         navigator.geolocation.getCurrentPosition(function (position) {
             var latitude = position.coords.latitude;
             var longitude = position.coords.longitude;
-            window.location.href = "./loading.html";
 
             $.ajax ({
                 url: "https://pacific-garden-17851.herokuapp.com/",
@@ -20,15 +19,17 @@ $("#submitButton").click(function () {
                     localStorage.clear();
                     localStorage.setItem('item', data);
                     window.alert("success!");
-                    /*clearInterval(id1);
+                    clearInterval(id1);
                     time1 = 0;
                     loading_article.innerHTML = "Loading";
                     clearInterval(id2);
                     time2 = 0;
                     loading_footer.innerHTMl = "소요 시간: &nbsp;초";
-                    window.location.href = "./main.html";*/
+                    window.location.href = "./main.html";
                 }
             })
+        }).done(function (data) {
+            window.location.href = "./loading.html";
         });
     } else {
         window.alert("오류: 사용자 위치 정보 액세스 권한을 허용해주세요");
