@@ -13,6 +13,8 @@ $("#submitButton").click(function () {
         window.alert("시간은 09:00 부터 22:00 까지로 제한됩니다!");
     } else if ((to_hh < 9 || to_hh > 21) && !(to_hh == 22 && to_mm == 0)) {
         window.alert("시간은 09:00 부터 22:00 까지로 제한됩니다!");
+    } else if ((from_hh * 60 + from_mm) - (to_hh * 60 + to_mm) >= 0) {
+        window.alert("시작 시간이 끝 시간보다 앞서야 합니다!");
     } else if (preference == "") {
         window.alert("선호도를 선택하세요!");
     } else  {

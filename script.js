@@ -23,9 +23,9 @@ function checkAll () {
         }
     }
 
-    var fromtime = new Date().toISOString().slice(11, 16);
-    if (9 <= fromtime.slice(0, 2) && fromtime.slice(0, 2) <= 21) {
-        document.querySelector("input[name='from']").value = fromtime;
+    var fromtime = new Date();
+    if (9 <= fromtime.getHours() && fromtime.getHours() <= 21) {
+        document.querySelector("input[name='from']").value = fromtime.getHours() + ":" + fromtime.getMinutes();
     } else {
         document.querySelector("input[name='from']").value = "09:00";
     }
