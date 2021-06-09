@@ -83,10 +83,11 @@ var ECTimageSrc = "ECTMARKER.png";
 
 
   //커스텀 오버레이 생성
-  var iwcontent = '<div class="wrap">' + 
+  var content = '<div class="wrap">' + 
   '    <div class="info">' + 
   '        <div class="title">' + 
   positions[i].place_name + 
+  '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' + 
   '        </div>' + 
   '        <div class="body">'+
   '            <div class="desc">' + 
@@ -103,16 +104,42 @@ var ECTimageSrc = "ECTMARKER.png";
   '    </div>' +    
   '</div>';
 
+  var overlay = new kakao.maps.CustomOverlay({
+    content: content,
+    map: map,
+    position: marker.getPosition(),  
+    visible: false     
+});
+
+    overlay.setMap(null);    
+
     kakao.maps.event.addListener(marker, 'click', function() {
         overlay.setMap(map);
     });
 
-    var infowindow = new kakao.maps.InfoWindow({
-        map: map, // 인포윈도우가 표시될 지도
-        position : poscor, 
-        content : iwcontent,
-        removable : true
+    var overlay = new kakao.maps.CustomOverlay({
+        content: content,
+        map: map,
+        position: marker.getPosition()       
     });
 
-    infowindow.open(map, marker); 
+    function closeOverlay() {
+        overlay.setMap(null);     
+    }
   }
+
+
+
+//길찾기 버튼
+//길찾기
+function getDistanceFromLatLonInKm(lat1,lng1,lat2,lng2) { 
+    function deg2rad(deg) { 
+        return deg * (Math.PI/180) 
+    } 
+    var R = 6371; // Radius of the earth in km 
+    var dLat = deg2rad(lat2-lat1); // deg2rad below 
+    var dLon = deg2rad(lng2-lng1); 
+    var a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.sin(dLon/2) * Math.sin(dLon/2); 
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+    var d = R * c; // Distance in km return d; 
+}
