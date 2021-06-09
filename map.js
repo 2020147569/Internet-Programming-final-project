@@ -83,11 +83,10 @@ var ECTimageSrc = "ECTMARKER.png";
 
 
   //커스텀 오버레이 생성
-  var content = '<div class="wrap">' + 
+  var iwcontent = '<div class="wrap">' + 
   '    <div class="info">' + 
   '        <div class="title">' + 
   positions[i].place_name + 
-  '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' + 
   '        </div>' + 
   '        <div class="body">'+
   '            <div class="desc">' + 
@@ -104,27 +103,18 @@ var ECTimageSrc = "ECTMARKER.png";
   '    </div>' +    
   '</div>';
 
-  var overlay = new kakao.maps.CustomOverlay({
-    content: content,
-    map: map,
-    position: marker.getPosition()       
-});
-
-    overlay.setMap(null);    
-
     kakao.maps.event.addListener(marker, 'click', function() {
         overlay.setMap(map);
     });
 
-    var overlay = new kakao.maps.CustomOverlay({
-        content: content,
-        map: map,
-        position: marker.getPosition()       
+    var infowindow = new kakao.maps.InfoWindow({
+        map: map, // 인포윈도우가 표시될 지도
+        position : poscor, 
+        content : iwcontent,
+        removable : true
     });
 
-    function closeOverlay() {
-        overlay.setMap(null);     
-    }
+    infowindow.open(map, marker); 
   }
 
 
