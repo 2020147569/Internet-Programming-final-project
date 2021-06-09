@@ -1,5 +1,21 @@
 $("#submitButton").click(function () {
-    if (!nullchecked) {
+    const personnel = $("input[name=personnel]").val();
+    var from = $("input[name=from]").val();
+    const from_hh = parseInt(from.substring(0, 2));
+    const from_mm = parseInt(from.substring(3));
+    const to = $("input[name=to]").val();
+    const to_hh = parseInt(to.substring(0, 2));
+    const to_mm = parseInt(to.substring(3));
+    const preference = $("input[name=preference]").serialize();
+    if (personnel < 1 || personnel > 4) {
+        window.alert("인원은 최소 1명, 최대 4명으로 제한됩니다!");
+    } else if ((from_hh < 9 || from_hh > 21) && !(from_hh == 22 && from_mm == 0)) {
+        window.alert("시간은 09:00 부터 22:00 까지로 제한됩니다!");
+    } else if ((to_hh < 9 || to_hh > 21) && !(to_hh == 22 && to_mm == 0)) {
+        window.alert("시간은 09:00 부터 22:00 까지로 제한됩니다!");
+    } else if (preference == "") {
+        window.alert("선호도를 선택하세요!");
+    } else  {
         document.getElementById("loading").style.width = "100%";
         document.getElementById("loading").style.padding = "0 0 0 30%";
 
@@ -40,10 +56,10 @@ $("#submitButton").click(function () {
                     url: "https://pacific-garden-17851.herokuapp.com/",
                     type: "POST",
                     data: {
-                        personnel: $("input[name=personnel]").val(),
-                        from: $("input[name=from]").val(),
-                        to: $("input[name=to]").val(),
-                        preference: $("input[name=preference]").serialize(),
+                        personnel: personnel,
+                        from: from,
+                        to: to,
+                        preference: preference,
                         latitude: latitude,
                         longitude: longitude
                     },
@@ -70,26 +86,3 @@ $("#submitButton").click(function () {
         }
     }
 })
-
-function nullchecked () {
-    const personnel = $("input[name=personnel]").val();
-    const from = $("input[name=from]").val();
-    const from_hh = parseInt(from.silce(0, 2));
-    const from_mm = parseInt(from.slice(3));
-    const to = $("input[name=to]").val();
-    const to_hh = parseInt(to.slice(0, 2));
-    const to_mm = parseInt(to, slice(3));
-    const preference = $("input[name=preference]").serialize();
-    if (personnel < 1 || personnel > 4) {
-        window.alert("인원은 최소 1명, 최대 4명으로 제한됩니다!");
-        return false;
-    } else if (from_hh < 9 || from_hh > 21 || !(from_hh == 22 && from_mm == 0)) {
-        window.alert("시간은 09:00 부터 22:00 까지로 제한됩니다!");
-    } else if (to_hh < 9 || to_hh > 21 || !(to_hh == 22 && to_mm == 0)) {
-        window.alert("시간은 09:00 부터 22:00 까지로 제한됩니다!");
-    } else if (preference == "") {
-        window.alert("선호도를 선택하세요!");
-        return false;
-    }
-    return true;
-}
