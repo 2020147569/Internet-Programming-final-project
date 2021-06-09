@@ -37,6 +37,8 @@ if (navigator.geolocation) {
     var locPosition = new kakao.maps.LatLng(37.561782, 126.936419);
 }
 
+var overlays = [];
+var markers = [];
 var positions = [{
     "place_name": "카카오프렌즈 코엑스점",
     "distance": "418",
@@ -80,9 +82,9 @@ var ECTimageSrc = "ECTMARKER.png";
     image : markerImage
   }); // 마커 이미지 
 
+  markers[i] = marker;
 
-
-  //커스텀 오버레이 생성
+  /*/커스텀 오버레이 생성
   var content = '<div class="wrap">' + 
   '    <div class="info">' + 
   '        <div class="title">' + 
@@ -103,44 +105,84 @@ var ECTimageSrc = "ECTMARKER.png";
   '        </div>' + 
   '    </div>' +    
   '</div>';
+  */
+
+
+    var content = document.createElement('div');
+    content.setAttribute("class", "wrap");
+    
+    var content1 = document.createElement('div');
+    content1.setAttribute("class", "info")
+    
+    content.appendChild(content1);
+
+    var titleContent = document.createElement('div');
+    titleContent.setAttribute("class", "title");
+    titleContent.setAttribute("onclick", "closeOverlay()")
+    titleContent.setAttribute("title", "닫기");
+    titleContent.innerHTML = positions[i].place_name;
+
+    content1.appendChild(titleContent);
+
+    var bodyContent = document.createElement('div');
+    bodyContent.setAttribute("class", "body")
+
+    content1.appendChild(bodyContent);
+
+    var descContent = document.createElement('div');
+    descContent.setAttribute("class", "desc");
+
+    var ellipsisContent = document.createElement('div');
+    ellipsisContent.setAttribute("class", "ellipsis")
+
+    var elli = "주소: " + positions[i].road_address_name;
+    ellipsisContent.innerHTML = elli;
+
+    descContent.appendChild(ellipsisContent);
+    /////////url
+    var urlContent = document.createElement('div');
+    urlContent.setAttribute("class", "desc")
+
+    var urlPlace = document.createElement('a');
+    urlPlace.setAttribute("href", positions[i].place_url);
+    urlPlace.innerHTML = "홈페이지";
+
+
+    urlContent.appendChild(urlPlace);
+    //////////
+
+    descContent.appendChild(urlContent);
+
+
+    ////////navi
+    var naviContent = document.createElement('div');
+    naviContent.setAttribute("class", "navigation_button");
+    naviContent.setAttribute("onclick", "closeOverlay()");
+    naviContent.innerHTML = "길찾기 안내 시작";
+
+    descContent.appendChild(naviContent);
+
 
   var overlay = new kakao.maps.CustomOverlay({
     content: content,
     map: map,
-    position: marker.getPosition(),  
-    visible: false     
+    position: marker.getPosition(),       
 });
 
-    overlay.setMap(null);    
+    overlay.setVisible(false);  
 
     kakao.maps.event.addListener(marker, 'click', function() {
         overlay.setMap(map);
         overlay.setVisible(true);
     });
 
-    var overlay = new kakao.maps.CustomOverlay({
-        content: content,
-        map: map,
-        position: marker.getPosition()       
-    });
-
     function closeOverlay() {
         overlay.setMap(null);     
     }
+
+    overlays[i] = overlay;
   }
 
+function navigate(p){
 
-
-//길찾기 버튼
-//길찾기
-function getDistanceFromLatLonInKm(lat1,lng1,lat2,lng2) { 
-    function deg2rad(deg) { 
-        return deg * (Math.PI/180) 
-    } 
-    var R = 6371; // Radius of the earth in km 
-    var dLat = deg2rad(lat2-lat1); // deg2rad below 
-    var dLon = deg2rad(lng2-lng1); 
-    var a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.sin(dLon/2) * Math.sin(dLon/2); 
-    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
-    var d = R * c; // Distance in km return d; 
 }
