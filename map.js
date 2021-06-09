@@ -115,6 +115,7 @@ var ECTimageSrc = "ECTMARKER.png";
 
     kakao.maps.event.addListener(marker, 'click', function() {
         overlay.setMap(map);
+        overlay.setVisible(visible);
     });
 
     var overlay = new kakao.maps.CustomOverlay({
