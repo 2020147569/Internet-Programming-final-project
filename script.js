@@ -25,7 +25,15 @@ function checkAll () {
 
     var fromtime = new Date();
     if (9 <= fromtime.getHours() && fromtime.getHours() <= 21) {
-        document.querySelector("input[name='from']").value = fromtime.getHours() + ":" + fromtime.getMinutes();
+        var fromhour = String(fromtime.getHours());
+        var fromminute = String(fromtime.getMinutes());
+        if (fromtime.getHours() < 10) {
+            fromhour = "0" + fromhour;
+        }
+        if (fromtime.getMinutes() < 10) {
+            fromminute = "0" + fromminute;
+        }
+        document.querySelector("input[name='from']").value = fromhour + ":" + fromminute;
     } else {
         document.querySelector("input[name='from']").value = "09:00";
     }
