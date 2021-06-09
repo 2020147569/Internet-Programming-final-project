@@ -7,9 +7,10 @@
         <link rel="stylesheet" type="text/css" href="main.css">
         <link rel="stylesheet" type="text/css" href="mapstyle.css">
         <script type="text/javascript" src="jquery-3.6.0.min.js"></script>
-        <title>Team Project-input</title>
+        <title>Team Project-main</title>
     </head>
     <body>
+        <div id="loading"><article id="l1"></article><br><article id="l2"></article></div>
         <header>
             <nav><span onclick="opennav()">&#9776;</span></nav>
             <h1>시간 기반의 장소 추천 서비스</h1>
@@ -20,24 +21,22 @@
                 <form action="#">
                     <p>
                         <strong># PERSONNEL</strong><br>
-                        <label><input type="number" class="personnel" name="personnel" min="1" max="4" step="1" value="1" /></label>
+                        <label><input type="number" class="personnel" name="personnel" step="1" value="1" /></label>
                     </p>
                     <p>
                         <strong># TIME</strong><br>
-                        <label><input type="time" class="from" name="from" step="60" value="00:00" /> ~
-                            <input type="time" class="to" name="to" step="60" value="23:59" /></label>
+                        <label><input type="time" class="from" name="from" step="60" /> ~
+                            <input type="time" class="to" name="to" step="60" value="22:00" /></label>
                     </p>
                     <p>
                         <strong># PREFERENCE</strong><br>
-                        <label><input type="checkbox" onclick="preferAll(this)" />
+                        <label><input type="checkbox" id="zerothInput" onclick="preferAll(this)" />
                             <span class="checkbox"></span><span id = "zerothTitle" class="title">전체선택및해제</span></label>
-                        <button type="button" id="zerothButton" class="displaybutton" onclick="display(this)">&dtrif;</button>
+                        <button type="button" id="zerothButton" class="displaybutton" onclick="display(this)">&utrif;</button>
                         <br><label id="zerothLabel"><label><input type="checkbox" id="selectall1" onclick="selectAll(this)" />
                             <span class="checkbox"></span><span class="title">음식점</span></label>
                         <button type="button" id="button1" class="displaybutton" onclick="display(this)">&dtrif;</button>
                         <br><label id="checkbox1">
-                            <label><input type="checkbox" name="preference" onclick="checkSelectAll(this)" value="기타" />
-                                <span class="checkbox"></span><span class="title">기타</span></label><br>
                             <label><input type="checkbox" name="preference" onclick="checkSelectAll(this)" value="뷔페" />
                                 <span class="checkbox"></span><span class="title">뷔페</span></label><br>
                             <label><input type="checkbox" name="preference" onclick="checkSelectAll(this)" value="양식" />

@@ -47,3 +47,8 @@
     src: url("./fonts/S-Core_Dream_OTF/SCDream9.otf");
     font-family: "SCDream9";
 }
+
+@font-face {
+    src: url("./fonts/DungGeunMo.ttf");
+    font-family: "DungGeumMo";
+}

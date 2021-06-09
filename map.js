@@ -30,7 +30,7 @@ if (navigator.geolocation) {
         });
 
         map.setCenter(locPosition); 
-      });
+    });
     
 } else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
     
@@ -50,39 +50,40 @@ var positions = [{
     "category_group_name": "",
     "x": "127.05902969025047",
     "y": "37.51207412593136"
-  }]
+}]
 
 var FoodimageSrc = "FOODMARKER.png";
 var ECTimageSrc = "ECTMARKER.png";
 
-  for(let i = 0; i < positions.length; i ++){
-  var poscor = new kakao.maps.LatLng(positions[i].y, positions[i].x);
+for(let i = 0; i < positions.length; i ++){
+    var poscor = new kakao.maps.LatLng(positions[i].y, positions[i].x);
 
-  var imageSize = new kakao.maps.Size(40, 40);
+    var imageSize = new kakao.maps.Size(40, 40);
 
-  var category = positions[i].category_name;
+    var category = positions[i].category_name;
 
-  var index = category.indexOf(" >");
+    var index = category.indexOf(" >");
 
-  if(category.slice(0,index) == "음식점"){
-  var src = FoodimgageSrc;
-  }
-  else {
-      var src = ECTimageSrc;
-  }
+    if(category.slice(0,index) == "음식점"){
+        var src = FoodimgageSrc;
+    }
+    else {
+        var src = ECTimageSrc;
+    }
 
-  var markerImage = new kakao.maps.MarkerImage(src, imageSize); 
+    var markerImage = new kakao.maps.MarkerImage(src, imageSize); 
 
-  var marker = new kakao.maps.Marker({
-    map: map, // 마커를 표시할 지도
-    position: poscor, // 마커를 표시할 위치
-    title : positions[i].place_name, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-    image : markerImage
-  }); // 마커 이미지 
+    var marker = new kakao.maps.Marker({
+        map: map, // 마커를 표시할 지도
+        position: poscor, // 마커를 표시할 위치
+        title : positions[i].place_name, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+        image : markerImage
+    }); // 마커 이미지 
 
 
 
   //커스텀 오버레이 생성
+<<<<<<< HEAD
   var iwcontent = '<div class="wrap">' + 
   '    <div class="info">' + 
   '        <div class="title">' + 
@@ -102,6 +103,36 @@ var ECTimageSrc = "ECTMARKER.png";
   '        </div>' + 
   '    </div>' +    
   '</div>';
+=======
+    var content = '<div class="wrap">' + 
+        '    <div class="info">' + 
+        '        <div class="title">' + 
+        positions[i].place_name + 
+        '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' + 
+        '        </div>' + 
+        '        <div class="body">'+
+        '            <div class="desc">' + 
+        '                <div class="ellipsis">'+
+        '주소: ' +
+        positions[i].road_address_name  +
+        '                             </div>' +
+        '                <div><a href="'+
+        positions[i].place_url  +
+        '" target="_blank" class="link">홈페이지</a></div>' + 
+        '<div class = "navigation_button"><a href = "navigation.html">길찾기 안내 시작</a></div>' +//길찾기 버튼
+        '            </div>' + 
+        '        </div>' + 
+        '    </div>' +    
+        '</div>';
+
+    var overlay = new kakao.maps.CustomOverlay({
+        content: content,
+        map: map,
+        position: marker.getPosition()       
+    });
+
+    overlay.setMap(null);    
+>>>>>>> 976afa713bca681e616281e0a027b734cf20cfe0
 
     kakao.maps.event.addListener(marker, 'click', function() {
         overlay.setMap(map);
@@ -114,8 +145,15 @@ var ECTimageSrc = "ECTMARKER.png";
         removable : true
     });
 
+<<<<<<< HEAD
     infowindow.open(map, marker); 
   }
+=======
+    function closeOverlay() {
+        overlay.setMap(null);     
+    }
+}
+>>>>>>> 976afa713bca681e616281e0a027b734cf20cfe0
 
 
 
