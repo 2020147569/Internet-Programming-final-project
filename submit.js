@@ -64,8 +64,18 @@ $("#submitButton").click(function () {
                         longitude: longitude
                     },
                     success: function(data) {
-                        localStorage.clear();
-                        localStorage.setItem('item', data);
+                        if(data.length == 0){
+                            window.alert("No data matches the request");
+                        }
+                        else{
+                            localStorage.clear();
+                            localStorage.setItem('item', data);
+                        }
+                    },
+                    error: function(){
+                        window.alert("* ERROR * occured!\nServer may be under regular inspection.");
+                    },
+                    complete: function(){
                         clearInterval(id1);
                         time1 = 0;
                         l1.innerHTML = "";
@@ -74,10 +84,6 @@ $("#submitButton").click(function () {
                         l2.innerHTML = "";
                         document.getElementById("loading").style.width = "0%";
                         document.getElementById("loading").style.padding = "0";
-                    },
-                    error: function(){
-                        window.alert("* ERROR * occured!\nServer may be under regular inspection.");
-                        location.reload();
                     }
                 })
             });
