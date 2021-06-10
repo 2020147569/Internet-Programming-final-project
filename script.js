@@ -211,6 +211,32 @@ function zerothCheck () {
 window.addEventListener("DOMContentLoaded", checkAll, false);
 
 function data_display (data) {
-    console.log(JSON.stringify(data));
+    display_init();
+
+    const footer = document.querySelector("footer");
+    const data_display_div = document.getElementById("data_display_div");
     
+    for (var i = 0; i < data.length; i++) {
+        if (i >= 20) break;
+        const div = document.createElement("div");
+        div.className = "data_div";
+        div.innerHTML = "<strong>" + data[i].place_name + "</strong><br>" + data[i].address_name;
+        if (data[i].road_address_name != "") div.innerHTML += " (" + data[i].road_address_name + ")";
+        div.id = "data_" + String(i);
+        if (i == 19) div.style.margin = "0";
+        div.addEventListener("click", function () {
+            var movDataLatLon = new kakao.maps.LatLng(data[i].y, data[i].x);
+            map.panTo(movDataLatLon);
+        });
+        data_display_div.appendChild(div);
+    }
+}
+
+function display_init () {
+    const footer = document.querySelector("footer");
+    footer.innerHTML = "";
+
+    const data_display_div = document.createElement("div");
+    data_display_div.id = "data_display_div";
+    footer.appendChild(data_display_div);
 }
