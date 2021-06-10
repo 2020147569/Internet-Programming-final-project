@@ -269,12 +269,14 @@ div#result {
     width: 40vw;
     height: 15vh;
     background-color: #96DFD8;
+    padding: 2vh 0 0 3vw;
     line-height: 1.5em;
     display: none;
 }
 
 div#result strong {
     font-size: 1.5em;
+    color: white;
 }
 
 /* loading */
