@@ -1,4 +1,6 @@
 $("#submitButton").click(function () {
+    $("#sidenav").width("0");
+
     const personnel = $("input[name=personnel]").val();
     var from = $("input[name=from]").val();
     const from_hh = parseInt(from.substring(0, 2));
