@@ -118,11 +118,15 @@ var ECTimageSrc = "ECTMARKER.png";
 
     var titleContent = document.createElement('div');
     titleContent.setAttribute("class", "title");
-    titleContent.setAttribute("onclick", "closeOverlay()")
-    titleContent.setAttribute("title", "닫기");
     titleContent.innerHTML = positions[i].place_name;
 
     content1.appendChild(titleContent);
+
+    var closeContent = document.createElement('div');
+    closeContent.setAttribute("class", "close");
+    closeContent.setAttribute("onclick", "closeOverlay()");
+
+    titleContent.appendChild(closeContent);
 
     var bodyContent = document.createElement('div');
     bodyContent.setAttribute("class", "body")
@@ -131,6 +135,8 @@ var ECTimageSrc = "ECTMARKER.png";
 
     var descContent = document.createElement('div');
     descContent.setAttribute("class", "desc");
+
+    bodyContent.appendChild(descContent);
 
     var ellipsisContent = document.createElement('div');
     ellipsisContent.setAttribute("class", "ellipsis")
@@ -157,7 +163,7 @@ var ECTimageSrc = "ECTMARKER.png";
     ////////navi
     var naviContent = document.createElement('div');
     naviContent.setAttribute("class", "navigation_button");
-    naviContent.setAttribute("onclick", "closeOverlay()");
+    naviContent.setAttribute("onclick", "navigate()");
     naviContent.innerHTML = "길찾기 안내 시작";
 
     descContent.appendChild(naviContent);
