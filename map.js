@@ -5,6 +5,7 @@ var mapContainer = document.getElementById('map'), // 지도를 표시할 div
         };
 
 var nowSrc = "REDSPOT.png";
+var ENDSRC = "ENDSPOT.png";
 
 var map;
 
@@ -296,7 +297,7 @@ function navigate(x, y){
                         pType = "S";
                         size = new Tmapv2.Size(24, 38);
                     } else if (properties.pointType == "E") { //도착지 마커
-                        markerImg = ECTimageSrc;
+                        markerImg = ENDSRC;
                         pType = "E";
                         size = new Tmapv2.Size(24, 38);
                     } else { //각 포인트 마커
