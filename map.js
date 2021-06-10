@@ -343,7 +343,7 @@ function navigate(x, y){
     });
 
     $("#result").css("display", "block");
-    $("back_to_map").css("display", "block");
+    $("#back_to_map").css("display", "block");
 }
     
 function drawLine(arrPoint) {
