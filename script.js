@@ -209,3 +209,8 @@ function zerothCheck () {
 }
 
 window.addEventListener("DOMContentLoaded", checkAll, false);
+
+function data_display (data) {
+    console.log(JSON.stringify(data));
+    
+}
