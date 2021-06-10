@@ -226,7 +226,7 @@ function data_display (data) {
         if (i == 19) div.style.margin = "0";
         div.addEventListener("click", function () {
             var movDataLatLon = new kakao.maps.LatLng(data[i].y, data[i].x);
-            map.setCenter(movDataLatLon);
+            map.panTo(movDataLatLon);
         });
         data_display_div.appendChild(div);
     }
