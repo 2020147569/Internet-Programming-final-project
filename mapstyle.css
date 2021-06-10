@@ -7,6 +7,6 @@
 .info .close:hover {cursor: pointer;}
 .info .body {position: relative;overflow:hidden; text-align: left; margin-left: 13px;}
 .info .desc {position: relative;margin: 0 auto; margin-top: 13px; margin-bottom: 13px;height: 150px; overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
-.navigation_button {margin-left: 46px; margin-top: 5px; padding-top: 8px; background-color: #777; border-radius: 10%; width: 130px; height: 40px;font-family: "SCDream6"; font-size: 15px; color: white; text-align: center; vertical-align: middle;}
+.navigation_button {margin-left: 46px; margin-top: 25px; padding-top: 12px; background-color: #777; border-radius: 10%; width: 130px; height: 40px;font-family: "SCDream6"; font-size: 15px; color: white; text-align: center; vertical-align: middle;}
 .info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png');}
 .info .link {color: #5085BB;}
