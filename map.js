@@ -73,7 +73,7 @@ function data_marker (data) {
         var index = category.indexOf(" >");
 
         if(category.slice(0,index) == "음식점"){
-            var src = FoodimageSrc;
+            var src = FoodimgageSrc;
         }
         else {
             var src = ECTimageSrc;
