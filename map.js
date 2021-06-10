@@ -1,17 +1,16 @@
-function display_map () {
-    var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
         mapOption = { 
             center: new kakao.maps.LatLng(37.561782, 126.936419), // 지도의 중심좌표
             level: 5 // 지도의 확대 레벨
         };
 
+var nowSrc = "REDSPOT.png";
+
+var currentX;
+var currentY;
+
+function display_map () {
     var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-
-    var nowSrc = "REDSPOT.png"
-
-
-    var currentX;
-    var currentY;
 
     if (navigator.geolocation) {
         
