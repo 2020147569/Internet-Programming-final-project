@@ -1,47 +1,51 @@
-var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
-    mapOption = { 
-        center: new kakao.maps.LatLng(37.561782, 126.936419), // 지도의 중심좌표
-        level: 5 // 지도의 확대 레벨
-    };
+function display_map () {
+    var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
+        mapOption = { 
+            center: new kakao.maps.LatLng(37.561782, 126.936419), // 지도의 중심좌표
+            level: 5 // 지도의 확대 레벨
+        };
 
-var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+    var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 
-var nowSrc = "REDSPOT.png"
+    var nowSrc = "REDSPOT.png"
 
 
-var currentX;
-var currentY;
+    var currentX;
+    var currentY;
 
-if (navigator.geolocation) {
-    
-    // GeoLocation을 이용해서 접속 위치를 얻어옵니다
-    navigator.geolocation.getCurrentPosition(function(position) {
+    if (navigator.geolocation) {
         
-        var lat = position.coords.latitude, // 위도
-            lon = position.coords.longitude; // 경도
-        
-        currentX = lon;
-        currentY = lat;
+        // GeoLocation을 이용해서 접속 위치를 얻어옵니다
+        navigator.geolocation.getCurrentPosition(function(position) {
+            
+            var lat = position.coords.latitude, // 위도
+                lon = position.coords.longitude; // 경도
+            
+            currentX = lon;
+            currentY = lat;
 
-        var locPosition = new kakao.maps.LatLng(lat, lon); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
-        var imageSize = new kakao.maps.Size(20, 20);
-        var nowimageSrc = new kakao.maps.MarkerImage(nowSrc, imageSize); 
+            var locPosition = new kakao.maps.LatLng(lat, lon); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
+            var imageSize = new kakao.maps.Size(20, 20);
+            var nowimageSrc = new kakao.maps.MarkerImage(nowSrc, imageSize); 
 
-        // 마커와 인포윈도우를 표시합니다
-        var marker = new kakao.maps.Marker({  
-            map: map, 
-            position: locPosition,
-            image : nowimageSrc,
-            clickable : true
+            // 마커와 인포윈도우를 표시합니다
+            var marker = new kakao.maps.Marker({  
+                map: map, 
+                position: locPosition,
+                image : nowimageSrc,
+                clickable : true
+            });
+
+            map.setCenter(locPosition); 
         });
-
-        map.setCenter(locPosition); 
-    });
-    
-} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
-    
-    var locPosition = new kakao.maps.LatLng(37.561782, 126.936419);
+        
+    } else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
+        
+        var locPosition = new kakao.maps.LatLng(37.561782, 126.936419);
+    }
 }
+
+document.addEventListener("DOMContentLoaded", display_map, false);
 
 var overlays = [];
 var markers = [];
@@ -149,12 +153,9 @@ function data_marker (data) {
         urlPlace.setAttribute("href", positions[i].place_url);
         urlPlace.innerHTML = "장소 정보 url";
 
-
         urlContent.appendChild(urlPlace);
-        //////////
 
         descContent.appendChild(urlContent);
-
 
         ////////navi
         var naviContent = document.createElement('div');
@@ -166,16 +167,12 @@ function data_marker (data) {
 
         descContent.appendChild(naviContent);
 
-
-        
         overlay.setVisible(false);  
 
         kakao.maps.event.addListener(marker, 'click', function() {
             overlays[this.toString()].setMap(map);
             overlays[this.toString()].setVisible(true);
         });
-
-        
 
         overlays[i] = overlay;
     }
@@ -202,7 +199,7 @@ function navigate(x, y){
     map = new Tmapv2.Map("map", {
         center : new Tmapv2.LatLng(currentY, currentX),
         width : "100%",
-        height : "100%",
+        height : "70vh",
         zoom : 15,
         zoomControl : true,
         scrollwheel : true
