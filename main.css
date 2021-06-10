@@ -242,6 +242,10 @@ div.data_div {
     display: inline-block;
 }
 
+div.data_div::-webkit-scrollbar {
+    display: none;
+}
+
 /*label#zerothLabel {
     display: none;
 }*/
