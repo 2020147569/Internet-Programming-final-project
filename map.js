@@ -209,150 +209,182 @@ else{
   }
 
 function navigate(x, y){
+
   for(let i = 0; i < position_size; i ++){
     markers[i].setMap(null);
     overlays[i].setMap(null);
 }
+  mapContainer.remove();
+  var totalMarkerArr = [];
+	var drawInfoArr = [];
+	var resultdrawArr = [];
 
-function searchPubTransPathAJAX() {
-  var xhr = new XMLHttpRequest();
-  //ODsay apiKey 입력
-  var url = "https://api.odsay.com/v1/api/searchPubTransPath?SX="+currentX+"&SY="+currentY+"&EX="+x+"&EY="+y+"&apiKey=fdyJ99EmG5fIOsXDYCez3A";
-  xhr.open("GET", url, true);
-  xhr.send();
-  xhr.onreadystatechange = function() {
-    if (xhr.readyState == 4 && xhr.status == 200) {
-    console.log( JSON.parse(xhr.responseText) ); // <- xhr.responseText 로 결과를 가져올 수 있음
-    //노선그래픽 데이터 호출
-    callMapObjApiAJAX((JSON.parse(xhr.responseText))["result"]["path"][0].info.mapObj);
-    }
-  }
-}
-
-//길찾기 API 호출
-searchPubTransPathAJAX();
-
-function callMapObjApiAJAX(mabObj){
-  var xhr = new XMLHttpRequest();
-  //ODsay apiKey 입력
-  var url = "https://api.odsay.com/v1/api/loadLane?mapObject=0:0@"+mabObj+"&apiKey=fdyJ99EmG5fIOsXDYCez3A";
-  xhr.open("GET", url, true);
-  xhr.send();
-  xhr.onreadystatechange = function() {
-    if (xhr.readyState == 4 && xhr.status == 200) {
-      var resultJsonData = JSON.parse(xhr.responseText);
-      drawkakaoMarker(currentX,currentY);					// 출발지 마커 표시
-      drawkakaoMarker(x,y);					// 도착지 마커 표시
-      drawkakaoPolyLine(resultJsonData);		// 노선그래픽데이터 지도위 표시
-      // boundary 데이터가 있을경우, 해당 boundary로 지도이동
-      if(resultJsonData.result.boundary){
-          var boundary = new kakao.maps.LatLngBounds(
-                      new kakao.maps.LatLng(resultJsonData.result.boundary.top, resultJsonData.result.boundary.left),
-                      new kakao.maps.LatLng(resultJsonData.result.boundary.bottom, resultJsonData.result.boundary.right)
-                      );
-          map.panToBounds(boundary);
-      }
-    }
-  }
-}
-
-// 지도위 마커 표시해주는 함수
-function drawkakaoMarker(x,y){
-  var marker = new kakao.maps.Marker({
-      position: new kakao.maps.LatLng(y, x),
-      map: map,
-      image : markerImage
-  });
-}
-
-// 노선그래픽 데이터를 이용하여 지도위 폴리라인 그려주는 함수
-function drawkakaoPolyLine(data){
-  var lineArray;
+      // 1. 지도 띄우기
+      map = new Tmapv2.Map("map", {
+        center : new Tmapv2.LatLng(37.570028, 126.989072),
+        width : "100%",
+        height : "400px",
+        zoom : 15,
+        zoomControl : true,
+        scrollwheel : true
+      });
   
-  for(var i = 0 ; i < data.result.lane.length; i++){
-    for(var j=0 ; j <data.result.lane[i].section.length; j++){
-      lineArray = null;
-      lineArray = new Array();
-      for(var k=0 ; k < data.result.lane[i].section[j].graphPos.length; k++){
-        lineArray.push(new kakao.maps.LatLng(data.result.lane[i].section[j].graphPos[k].y, data.result.lane[i].section[j].graphPos[k].x));
-      }
-      
-      if(data.result.lane[i].type == 1){
-        var polyline = new kakao.maps.Polyline({
-            map: map,
-            path: lineArray,
-            strokeWeight: 5,
-            strokeColor: '#003499'
-        });
-      }else if(data.result.lane[i].type == 2){
-        var polyline = new kakao.maps.Polyline({
-            map: map,
-            path: lineArray,
-            strokeWeight: 5,
-            strokeColor: '#37b42d'
-        });
-      }else if(data.result.lane[i].type == 3){
-        var polyline = new kakao.maps.Polyline({
-            map: map,
-            path: lineArray,
-            strokeWeight: 5,
-            strokeColor: '#3B9F37'
-        });
-      }else if(data.result.lane[i].type == 4){
-        var polyline = new kakao.maps.Polyline({
-            map: map,
-            path: lineArray,
-            strokeWeight: 5,
-            strokeColor: '#3165A8'          
+      // 2. 시작, 도착 심볼찍기
+      // 시작
+      marker_s = new Tmapv2.Marker(
+          {
+            position : new Tmapv2.LatLng(currentY, currentX),
+            icon : nowSrc,
+            iconSize : new Tmapv2.Size(30, 30),
+            map : map
           });
-      }else if(data.result.lane[i].type == 5){
-        var polyline = new kakao.maps.Polyline({
-          map: map,
-          path: lineArray,
-          strokeWeight: 5,
-          strokeColor: '#703E8C'
-        });
-          
-      }else if(data.result.lane[i].type == 6){
-        var polyline = new kakao.maps.Polyline({
-          map: map,
-          path: lineArray,
-          strokeWeight: 5,
-          strokeColor: '#904D23'
-        });
-      }else if(data.result.lane[i].type == 7){
-        var polyline = new kakao.maps.Polyline({
-            map: map,
-            path: lineArray,
-            strokeWeight: 5,
-            strokeColor: '#5B692E'
-        });
-      }else if(data.result.lane[i].type == 8){
-        var polyline = new kakao.maps.Polyline({
-            map: map,
-            path: lineArray,
-            strokeWeight: 5,
-            strokeColor: '#C82363'
-        });
-      }
-      else if(data.result.lane[i].type == 9){
-        var polyline = new kakao.maps.Polyline({
-            map: map,
-            path: lineArray,
-            strokeWeight: 5,
-            strokeColor: '#B39627'
-        });}
-      else{
-        var polyline = new kakao.maps.Polyline({
-          map: map,
-          path: lineArray,
-          strokeWeight: 5
-        });
-      }
-
-
-
+  
+      // 도착
+      marker_e = new Tmapv2.Marker(
+          {
+            position : new Tmapv2.LatLng(currentY, currentX),
+            icon : ECTimageSrc,
+            iconSize : new Tmapv2.Size(30, 30),
+            map : map
+          });
+  
+      // 3. 경로탐색 API 사용요청
+      $
+          .ajax({
+            method : "POST",
+            url : "https://apis.openapi.sk.com/tmap/routes/pedestrian?version=1&format=json&callback=result",
+            async : false,
+            data : {
+              "appKey" : "l7xxd3c74c79747e43f4adad47fabd4e0d65",
+              "startX" : currentX,
+              "startY" : currentY,
+              "endX" : x,
+              "endY" : y,
+              "reqCoordType" : "WGS84GEO",
+              "resCoordType" : "EPSG3857",
+              "startName" : "출발지",
+              "endName" : "도착지"
+            },
+            success : function(response) {
+              var resultData = response.features;
+  
+              //결과 출력
+              var tDistance = "총 거리 : "
+                  + ((resultData[0].properties.totalDistance) / 1000)
+                      .toFixed(1) + "km,";
+              var tTime = " 총 시간 : "
+                  + ((resultData[0].properties.totalTime) / 60)
+                      .toFixed(0) + "분";
+  
+              $("#result").text(tDistance + tTime);
+              
+              //기존 그려진 라인 & 마커가 있다면 초기화
+              if (resultdrawArr.length > 0) {
+                for ( var i in resultdrawArr) {
+                  resultdrawArr[i]
+                      .setMap(null);
+                }
+                resultdrawArr = [];
+              }
+              
+              drawInfoArr = [];
+  
+              for ( var i in resultData) { //for문 [S]
+                var geometry = resultData[i].geometry;
+                var properties = resultData[i].properties;
+                var polyline_;
+  
+  
+                if (geometry.type == "LineString") {
+                  for ( var j in geometry.coordinates) {
+                    // 경로들의 결과값(구간)들을 포인트 객체로 변환 
+                    var latlng = new Tmapv2.Point(
+                        geometry.coordinates[j][0],
+                        geometry.coordinates[j][1]);
+                    // 포인트 객체를 받아 좌표값으로 변환
+                    var convertPoint = new Tmapv2.Projection.convertEPSG3857ToWGS84GEO(
+                        latlng);
+                    // 포인트객체의 정보로 좌표값 변환 객체로 저장
+                    var convertChange = new Tmapv2.LatLng(
+                        convertPoint._lat,
+                        convertPoint._lng);
+                    // 배열에 담기
+                    drawInfoArr.push(convertChange);
+                  }
+                } else {
+                  var markerImg = "";
+                  var pType = "";
+                  var size;
+  
+                  if (properties.pointType == "S") { //출발지 마커
+                    markerImg = nowSrc;
+                    pType = "S";
+                    size = new Tmapv2.Size(24, 38);
+                  } else if (properties.pointType == "E") { //도착지 마커
+                    markerImg = ECTimageSrc;
+                    pType = "E";
+                    size = new Tmapv2.Size(24, 38);
+                  } else { //각 포인트 마커
+                    markerImg = "http://topopen.tmap.co.kr/imgs/point.png";
+                    pType = "P";
+                    size = new Tmapv2.Size(8, 8);
+                  }
+  
+                  // 경로들의 결과값들을 포인트 객체로 변환 
+                  var latlon = new Tmapv2.Point(
+                      geometry.coordinates[0],
+                      geometry.coordinates[1]);
+  
+                  // 포인트 객체를 받아 좌표값으로 다시 변환
+                  var convertPoint = new Tmapv2.Projection.convertEPSG3857ToWGS84GEO(
+                      latlon);
+  
+                  var routeInfoObj = {
+                    markerImage : markerImg,
+                    lng : convertPoint._lng,
+                    lat : convertPoint._lat,
+                    pointType : pType
+                  };
+  
+                  // Marker 추가
+                  marker_p = new Tmapv2.Marker(
+                      {
+                        position : new Tmapv2.LatLng(
+                            routeInfoObj.lat,
+                            routeInfoObj.lng),
+                        icon : routeInfoObj.markerImage,
+                        iconSize : size,
+                        map : map
+                      });
+                }
+              }//for문 [E]
+              drawLine(drawInfoArr);
+            },
+            error : function(request, status, error) {
+              console.log("code:" + request.status + "\n"
+                  + "message:" + request.responseText + "\n"
+                  + "error:" + error);
+            }
+          });
+  
     }
-  }
-}
-}
+  
+    function addComma(num) {
+      var regexp = /\B(?=(\d{3})+(?!\d))/g;
+      return num.toString().replace(regexp, ',');
+    }
+    
+    function drawLine(arrPoint) {
+      var polyline_;
+  
+      polyline_ = new Tmapv2.Polyline({
+        path : arrPoint,
+        strokeColor : "#DD0000",
+        strokeWeight : 6,
+        map : map
+      });
+      resultdrawArr.push(polyline_);
+    }
+
+
+
