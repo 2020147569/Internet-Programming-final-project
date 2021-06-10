@@ -214,7 +214,7 @@ function navigate(x, y){
     {
         position : new Tmapv2.LatLng(currentY, currentX),
         icon : nowSrc,
-        iconSize : new Tmapv2.Size(30, 30),
+        iconSize : new Tmapv2.Size(20, 20),
         map : map
     });
   
