@@ -216,7 +216,7 @@ function navigate(x, y){
 }
   //이전 맵 삭제
   while (mapContainer.firstChild) {
-    main.removeChild(mapContainer.firstChild);
+    mapContainer.removeChild(mapContainer.firstChild);
   }
   var totalMarkerArr = [];
 	var drawInfoArr = [];
