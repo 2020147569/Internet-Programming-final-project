@@ -203,7 +203,7 @@ function navigate(x, y){
     map = new Tmapv2.Map("map", {
         center : new Tmapv2.LatLng(currentY, currentX),
         width : "100%",
-        height : "100%",
+        height : "70vh",
         zoom : 15,
         zoomControl : true,
         scrollwheel : true
