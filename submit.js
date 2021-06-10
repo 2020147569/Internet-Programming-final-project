@@ -1,3 +1,4 @@
+$ = jquery;
 $("#submitButton").click(function () {
     const personnel = $("input[name=personnel]").val();
     var from = $("input[name=from]").val();
@@ -74,7 +75,8 @@ $("#submitButton").click(function () {
                         }
                         else{
                             localStorage.clear();
-                            localStorage.setItem('item', data);
+                            localStorage.setItem("item", data);
+                            data_display();
                         }
                     },
                     error: function(){
@@ -97,3 +99,7 @@ $("#submitButton").click(function () {
         }
     }
 })
+
+function data_display () {
+    var data = localStorage.getItem("item");
+}
