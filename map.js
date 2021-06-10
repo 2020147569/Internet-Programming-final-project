@@ -214,7 +214,8 @@ function navigate(x, y){
     markers[i].setMap(null);
     overlays[i].setMap(null);
 }
-  mapContainer.remove();
+  //이전 맵 삭제
+  mapContainer.empty();
   var totalMarkerArr = [];
 	var drawInfoArr = [];
 	var resultdrawArr = [];
