@@ -247,10 +247,10 @@ function navigate(x, y){
             var resultData = response.features;
   
             //결과 출력
-            var tDistance = "총 거리 : "
-                + ((resultData[0].properties.totalDistance) / 1000)
-                    .toFixed(1) + "km";
-            var tTime = " 총 시간 : "
+            var tDistance = "총 거리&nbsp; : "
+                + (resultData[0].properties.totalDistance)
+                    .toFixed(1) + "m";
+            var tTime = " 예상 시간 : "
                 + ((resultData[0].properties.totalTime) / 60)
                     .toFixed(0) + "분";
   
