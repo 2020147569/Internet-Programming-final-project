@@ -46,6 +46,7 @@ if (navigator.geolocation) {
 var overlays = [];
 var markers = [];
 var positions = [];
+var overlays = [];
 
 var FoodimageSrc = "FOODMARKER.png";
 var ECTimageSrc = "ECTMARKER.png";
@@ -89,6 +90,7 @@ function data_marker (data) {
             }); // 마커 이미지 
 
         markers[i] = marker;
+        marker.toString = function myfunc(){return i;}
 
         var content = document.createElement('div');
         content.setAttribute("class", "wrap");
@@ -158,12 +160,12 @@ function data_marker (data) {
         map: map,
         position: marker.getPosition(),       
         });
-
+        overlays[i] = overlay;
         overlay.setVisible(false);  
 
         kakao.maps.event.addListener(marker, 'click', function() {
-            overlay.setMap(map);
-            overlay.setVisible(true);
+            overlays[this.toString()].setMap(map);
+            overlays[this.toString()].setVisible(true);
         });
 
         function closeOverlay() {
