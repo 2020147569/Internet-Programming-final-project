@@ -1,4 +1,4 @@
-.wrap {position: absolute;left: 0;bottom: 40px;width: 250px;height: 180px;margin-left: -125px;text-align: left;overflow: hidden;font-size: 12px;line-height: 1.5;}
+.wrap {position: absolute;left: 0;bottom: 40px;width: 250px;height: 180px;margin-left: -125px;text-align: left;overflow: hidden;font-size: 15px;line-height: 1.5;}
 .wrap * {padding: 0;margin: 0;}
 .wrap .info {width: 280px;height: 180px;border-radius: 5px;border-bottom: 2px solid #ccc;border-right: 1px solid #ccc;overflow: auto;background: #fff;}
 .wrap .info:nth-child(1) {border: 0;box-shadow: 0px 1px 2px #888;}
@@ -7,6 +7,6 @@
 .info .close:hover {cursor: pointer;}
 .info .body {position: relative;overflow:hidden; text-align: left; margin-left: 13px;}
 .info .desc {position: relative;margin: 0 auto; margin-top: 13px; margin-bottom: 13px;height: 150px; overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
-.navigation_button {margin-left: 46px; margin-top: 25px; padding-top: 12px; background-color: #777; border-radius: 10%; width: 130px; height: 40px;font-family: "SCDream6"; font-size: 15px; color: white; text-align: center; vertical-align: middle;}
+.navigation_button {margin-left: 46px; margin-top: 22px; padding-top: 12px; background-color: #777; border-radius: 10%; width: 130px; height: 40px;font-family: "SCDream6"; font-size: 15px; color: white; text-align: center; vertical-align: middle;}
 .info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png');}
 .info .link {color: #5085BB;}

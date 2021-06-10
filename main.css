@@ -264,12 +264,17 @@ div#map {
 
 div#result {
     position: fixed;
-    top: 62vh;
+    top: 67vh;
     left: 4vw;
     width: 40vw;
-    height: 20vh;
+    height: 15vh;
     background-color: #96DFD8;
+    line-height: 1.5em;
     display: none;
+}
+
+div#result strong {
+    font-size: 1.5em;
 }
 
 /* loading */

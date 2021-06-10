@@ -180,6 +180,9 @@ function data_marker (data) {
     }
 }
 
+var drawInfoArr;
+var resultdrawArr;
+
 function navigate(x, y){
 
     for(let i = 0; i < position_size; i ++){
@@ -191,9 +194,9 @@ function navigate(x, y){
     while (mapContainer.firstChild) {
         mapContainer.removeChild(mapContainer.firstChild);
     }
-    var totalMarkerArr = [];
-	  var drawInfoArr = [];
-	  var resultdrawArr = [];
+    
+	drawInfoArr = [];
+	resultdrawArr = [];
 
     // 1. 지도 띄우기
     map = new Tmapv2.Map("map", {
@@ -251,7 +254,7 @@ function navigate(x, y){
                 + ((resultData[0].properties.totalTime) / 60)
                     .toFixed(0) + "분";
   
-            $("#result").text("<strong>길찾기 정보</strong><br>" + tDistance + "<br>" + tTime);
+            $("#result").html("<strong>길찾기 정보</strong><br>" + tDistance + "<br>" + tTime);
               
             //기존 그려진 라인 & 마커가 있다면 초기화
             if (resultdrawArr.length > 0) {
