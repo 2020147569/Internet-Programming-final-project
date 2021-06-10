@@ -220,10 +220,10 @@ function navigate(x, y){
 	var resultdrawArr = [];
 
       // 1. 지도 띄우기
-      map = new Tmapv2.Map("map", {
+      var map = new Tmapv2.Map("map", {
         center : new Tmapv2.LatLng(currentY, currentX),
         width : "100%",
-        height : "400px",
+        height : "100%",
         zoom : 15,
         zoomControl : true,
         scrollwheel : true
