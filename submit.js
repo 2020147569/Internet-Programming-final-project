@@ -1,4 +1,3 @@
-$ = jquery;
 $("#submitButton").click(function () {
     const personnel = $("input[name=personnel]").val();
     var from = $("input[name=from]").val();
@@ -72,11 +71,8 @@ $("#submitButton").click(function () {
                     success: function(data) {
                         if(data.length == 0){
                             window.alert("No data matches the request");
-                        }
-                        else{
-                            localStorage.clear();
-                            localStorage.setItem("item", data);
-                            data_display();
+                        } else{
+                            data_display(data);
                         }
                     },
                     error: function(){
@@ -99,7 +95,3 @@ $("#submitButton").click(function () {
         }
     }
 })
-
-function data_display () {
-    var data = localStorage.getItem("item");
-}
