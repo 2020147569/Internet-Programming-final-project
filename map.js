@@ -281,35 +281,35 @@ function drawkakaoPolyLine(data){
         var polyline = new kakao.maps.Polyline({
             map: map,
             path: lineArray,
-            strokeWeight: 3,
+            strokeWeight: 5,
             strokeColor: '#003499'
         });
       }else if(data.result.lane[i].type == 2){
         var polyline = new kakao.maps.Polyline({
             map: map,
             path: lineArray,
-            strokeWeight: 3,
+            strokeWeight: 5,
             strokeColor: '#37b42d'
         });
       }else if(data.result.lane[i].type == 3){
         var polyline = new kakao.maps.Polyline({
             map: map,
             path: lineArray,
-            strokeWeight: 3,
+            strokeWeight: 5,
             strokeColor: '#3B9F37'
         });
       }else if(data.result.lane[i].type == 4){
         var polyline = new kakao.maps.Polyline({
             map: map,
             path: lineArray,
-            strokeWeight: 3,
+            strokeWeight: 5,
             strokeColor: '#3165A8'          
           });
       }else if(data.result.lane[i].type == 5){
         var polyline = new kakao.maps.Polyline({
           map: map,
           path: lineArray,
-          strokeWeight: 3,
+          strokeWeight: 5,
           strokeColor: '#703E8C'
         });
           
@@ -317,21 +317,21 @@ function drawkakaoPolyLine(data){
         var polyline = new kakao.maps.Polyline({
           map: map,
           path: lineArray,
-          strokeWeight: 3,
+          strokeWeight: 5,
           strokeColor: '#904D23'
         });
       }else if(data.result.lane[i].type == 7){
         var polyline = new kakao.maps.Polyline({
             map: map,
             path: lineArray,
-            strokeWeight: 3,
+            strokeWeight: 5,
             strokeColor: '#5B692E'
         });
       }else if(data.result.lane[i].type == 8){
         var polyline = new kakao.maps.Polyline({
             map: map,
             path: lineArray,
-            strokeWeight: 3,
+            strokeWeight: 5,
             strokeColor: '#C82363'
         });
       }
@@ -339,14 +339,14 @@ function drawkakaoPolyLine(data){
         var polyline = new kakao.maps.Polyline({
             map: map,
             path: lineArray,
-            strokeWeight: 3,
+            strokeWeight: 5,
             strokeColor: '#B39627'
         });}
       else{
         var polyline = new kakao.maps.Polyline({
           map: map,
           path: lineArray,
-          strokeWeight: 3
+          strokeWeight: 5
         });
       }
 
