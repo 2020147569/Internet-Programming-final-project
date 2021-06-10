@@ -36,7 +36,7 @@ if (navigator.geolocation) {
         });
 
         map.setCenter(locPosition); 
-      });
+    });
     
 } else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
     
@@ -58,7 +58,7 @@ var positions = [{
     "category_group_name": "",
     "x": "127.05902969025047",
     "y": "37.51207412593136"
-  }]
+    }];
 
 var FoodimageSrc = "FOODMARKER.png";
 var ECTimageSrc = "ECTMARKER.png";
@@ -66,40 +66,40 @@ var ECTimageSrc = "ECTMARKER.png";
 var position_size;
 
 if(positions.length < 20){
-  position_size = positions.length;
+    position_size = positions.length;
 }
 else{
-  position_size = 20;
+    position_size = 20;
 }
 
 
-  for(let i = 0; i < position_size; i ++){
-  var poscor = new kakao.maps.LatLng(positions[i].y, positions[i].x);
+for(let i = 0; i < position_size; i ++){
+    var poscor = new kakao.maps.LatLng(positions[i].y, positions[i].x);
 
-  var imageSize = new kakao.maps.Size(40, 40);
+    var imageSize = new kakao.maps.Size(40, 40);
 
-  var category = positions[i].category_name;
+    var category = positions[i].category_name;
 
-  var index = category.indexOf(" >");
+    var index = category.indexOf(" >");
 
-  if(category.slice(0,index) == "음식점"){
-  var src = FoodimgageSrc;
-  }
-  else {
-      var src = ECTimageSrc;
-  }
+    if(category.slice(0,index) == "음식점"){
+        var src = FoodimgageSrc;
+    }
+    else {
+        var src = ECTimageSrc;
+    }
 
-  var markerImage = new kakao.maps.MarkerImage(src, imageSize); 
+    var markerImage = new kakao.maps.MarkerImage(src, imageSize); 
 
-  var marker = new kakao.maps.Marker({
-    map: map, // 마커를 표시할 지도
-    position: poscor, // 마커를 표시할 위치
-    title : positions[i].place_name, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-    image : markerImage,
-    clickable : true
-  }); // 마커 이미지 
+    var marker = new kakao.maps.Marker({
+        map: map, // 마커를 표시할 지도
+        position: poscor, // 마커를 표시할 위치
+        title : positions[i].place_name, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+        image : markerImage,
+        clickable : true
+        }); // 마커 이미지 
 
-  markers[i] = marker;
+    markers[i] = marker;
 
   /*/커스텀 오버레이 생성
   var content = '<div class="wrap">' + 
@@ -188,11 +188,11 @@ else{
     descContent.appendChild(naviContent);
 
 
-  var overlay = new kakao.maps.CustomOverlay({
+    var overlay = new kakao.maps.CustomOverlay({
     content: content,
     map: map,
     position: marker.getPosition(),       
-});
+    });
 
     overlay.setVisible(false);  
 
@@ -206,182 +206,180 @@ else{
     }
 
     overlays[i] = overlay;
-  }
+}
 
 function navigate(x, y){
 
-  for(let i = 0; i < position_size; i ++){
-    markers[i].setMap(null);
-    overlays[i].setMap(null);
-}
+    for(let i = 0; i < position_size; i ++){
+        markers[i].setMap(null);
+        overlays[i].setMap(null);
+    }
   //이전 맵 삭제
-  while (mapContainer.firstChild) {
-    mapContainer.removeChild(mapContainer.firstChild);
-  }
-  var totalMarkerArr = [];
-	var drawInfoArr = [];
-	var resultdrawArr = [];
+    while (mapContainer.firstChild) {
+        mapContainer.removeChild(mapContainer.firstChild);
+    }
+    var totalMarkerArr = [];
+	  var drawInfoArr = [];
+	  var resultdrawArr = [];
 
       // 1. 지도 띄우기
-      var map1 = new Tmapv2.Map("map", {
+    var map1 = new Tmapv2.Map("map", {
         center : new Tmapv2.LatLng(currentY, currentX),
         width : "100%",
         height : "100%",
         zoom : 15,
         zoomControl : true,
         scrollwheel : true
-      });
+    });
   
       // 2. 시작, 도착 심볼찍기
       // 시작
-      var marker_s = new Tmapv2.Marker(
-          {
-            position : new Tmapv2.LatLng(currentY, currentX),
-            icon : nowSrc,
-            iconSize : new Tmapv2.Size(30, 30),
-            map : map1
-          });
+    var marker_s = new Tmapv2.Marker(
+    {
+        position : new Tmapv2.LatLng(currentY, currentX),
+        icon : nowSrc,
+        iconSize : new Tmapv2.Size(30, 30),
+        map : map1
+    });
   
       // 도착
-      var marker_e = new Tmapv2.Marker(
-          {
-            position : new Tmapv2.LatLng(y, x),
-            icon : ECTimageSrc,
-            iconSize : new Tmapv2.Size(30, 30),
-            map : map1
-          });
+    var marker_e = new Tmapv2.Marker(
+    {
+        position : new Tmapv2.LatLng(y, x),
+        icon : ECTimageSrc,
+        iconSize : new Tmapv2.Size(30, 30),
+        map : map1
+    });
   
       // 3. 경로탐색 API 사용요청
-      $
-          .ajax({
-            method : "POST",
-            url : "https://apis.openapi.sk.com/tmap/routes/pedestrian?version=1&format=json&callback=result",
-            async : false,
-            data : {
-              "appKey" : "l7xxd3c74c79747e43f4adad47fabd4e0d65",
-              "startX" : currentX,
-              "startY" : currentY,
-              "endX" : x,
-              "endY" : y,
-              "reqCoordType" : "WGS84GEO",
-              "resCoordType" : "EPSG3857",
-              "startName" : "출발지",
-              "endName" : "도착지"
-            },
-            success : function(response) {
-              var resultData = response.features;
+    $.ajax({
+        method : "POST",
+        url : "https://apis.openapi.sk.com/tmap/routes/pedestrian?version=1&format=json&callback=result",
+        async : false,
+        data : {
+            "appKey" : "l7xxd3c74c79747e43f4adad47fabd4e0d65",
+            "startX" : currentX,
+            "startY" : currentY,
+            "endX" : x,
+            "endY" : y,
+            "reqCoordType" : "WGS84GEO",
+            "resCoordType" : "EPSG3857",
+            "startName" : "출발지",
+            "endName" : "도착지"
+        },
+        success : function(response) {
+            var resultData = response.features;
   
               //결과 출력
-              var tDistance = "총 거리 : "
-                  + ((resultData[0].properties.totalDistance) / 1000)
-                      .toFixed(1) + "km,";
-              var tTime = " 총 시간 : "
-                  + ((resultData[0].properties.totalTime) / 60)
-                      .toFixed(0) + "분";
+            var tDistance = "총 거리 : "
+                + ((resultData[0].properties.totalDistance) / 1000)
+                    .toFixed(1) + "km,";
+            var tTime = " 총 시간 : "
+                + ((resultData[0].properties.totalTime) / 60)
+                    .toFixed(0) + "분";
   
-              $("#result").text(tDistance + tTime);
+            $("#result").text(tDistance + tTime);
               
               //기존 그려진 라인 & 마커가 있다면 초기화
-              if (resultdrawArr.length > 0) {
+            if (resultdrawArr.length > 0) {
                 for ( var i in resultdrawArr) {
-                  resultdrawArr[i]
-                      .setMap(null);
+                    resultdrawArr[i]
+                        .setMap(null);
                 }
                 resultdrawArr = [];
-              }
+            }
               
-              drawInfoArr = [];
+            drawInfoArr = [];
   
-              for ( var i in resultData) { //for문 [S]
+            for ( var i in resultData) { //for문 [S]
                 var geometry = resultData[i].geometry;
                 var properties = resultData[i].properties;
                 var polyline_;
   
   
                 if (geometry.type == "LineString") {
-                  for ( var j in geometry.coordinates) {
+                    for ( var j in geometry.coordinates) {
                     // 경로들의 결과값(구간)들을 포인트 객체로 변환 
-                    var latlng = new Tmapv2.Point(
-                        geometry.coordinates[j][0],
-                        geometry.coordinates[j][1]);
+                        var latlng = new Tmapv2.Point(
+                            geometry.coordinates[j][0],
+                            geometry.coordinates[j][1]);
                     // 포인트 객체를 받아 좌표값으로 변환
-                    var convertPoint = new Tmapv2.Projection.convertEPSG3857ToWGS84GEO(
-                        latlng);
+                        var convertPoint = new Tmapv2.Projection.convertEPSG3857ToWGS84GEO(latlng);
                     // 포인트객체의 정보로 좌표값 변환 객체로 저장
-                    var convertChange = new Tmapv2.LatLng(
-                        convertPoint._lat,
-                        convertPoint._lng);
+                        var convertChange = new Tmapv2.LatLng(
+                            convertPoint._lat,
+                            convertPoint._lng);
                     // 배열에 담기
-                    drawInfoArr.push(convertChange);
-                  }
+                        drawInfoArr.push(convertChange);
+                    }
                 } else {
-                  var markerImg = "";
-                  var pType = "";
-                  var size;
+                    var markerImg = "";
+                    var pType = "";
+                    var size;
   
-                  if (properties.pointType == "S") { //출발지 마커
-                    markerImg = nowSrc;
-                    pType = "S";
-                    size = new Tmapv2.Size(24, 38);
-                  } else if (properties.pointType == "E") { //도착지 마커
-                    markerImg = ECTimageSrc;
-                    pType = "E";
-                    size = new Tmapv2.Size(24, 38);
-                  } else { //각 포인트 마커
-                    markerImg = "http://topopen.tmap.co.kr/imgs/point.png";
-                    pType = "P";
-                    size = new Tmapv2.Size(8, 8);
-                  }
+                    if (properties.pointType == "S") { //출발지 마커
+                        markerImg = nowSrc;
+                        pType = "S";
+                        size = new Tmapv2.Size(24, 38);
+                    } else if (properties.pointType == "E") { //도착지 마커
+                        markerImg = ECTimageSrc;
+                        pType = "E";
+                        size = new Tmapv2.Size(24, 38);
+                    } else { //각 포인트 마커
+                        markerImg = "http://topopen.tmap.co.kr/imgs/point.png";
+                        pType = "P";
+                        size = new Tmapv2.Size(8, 8);
+                    }
   
                   // 경로들의 결과값들을 포인트 객체로 변환 
-                  var latlon = new Tmapv2.Point(
-                      geometry.coordinates[0],
-                      geometry.coordinates[1]);
+                    var latlon = new Tmapv2.Point(
+                        geometry.coordinates[0],
+                        geometry.coordinates[1]);
   
                   // 포인트 객체를 받아 좌표값으로 다시 변환
-                  var convertPoint = new Tmapv2.Projection.convertEPSG3857ToWGS84GEO(
-                      latlon);
+                    var convertPoint = new Tmapv2.Projection.convertEPSG3857ToWGS84GEO(
+                        latlon);
   
-                  var routeInfoObj = {
-                    markerImage : markerImg,
-                    lng : convertPoint._lng,
-                    lat : convertPoint._lat,
-                    pointType : pType
-                  };
+                    var routeInfoObj = {
+                        markerImage : markerImg,
+                        lng : convertPoint._lng,
+                        lat : convertPoint._lat,
+                        pointType : pType
+                    };
   
                   // Marker 추가
-                  var marker_p = new Tmapv2.Marker(
-                      {
+                    var marker_p = new Tmapv2.Marker(
+                    {
                         position : new Tmapv2.LatLng(
                             routeInfoObj.lat,
                             routeInfoObj.lng),
                         icon : routeInfoObj.markerImage,
                         iconSize : size,
                         map : map1
-                      });
+                    });
                 }
-              }//for문 [E]
-              drawLine(drawInfoArr);
+            }//for문 [E]
+            drawLine(drawInfoArr);
             },
             error : function(request, status, error) {
               console.log("code:" + request.status + "\n"
                   + "message:" + request.responseText + "\n"
                   + "error:" + error);
             }
-          });
+        });
   
     }
     
     function drawLine(arrPoint) {
-      var polyline_;
+        var polyline_;
   
-      polyline_ = new Tmapv2.Polyline({
-        path : arrPoint,
-        strokeColor : "#DD0000",
-        strokeWeight : 6,
-        map : map1
-      });
-      resultdrawArr.push(polyline_);
+        polyline_ = new Tmapv2.Polyline({
+            path : arrPoint,
+            strokeColor : "#DD0000",
+            strokeWeight : 6,
+            map : map1
+        });
+        resultdrawArr.push(polyline_);
     }
 
 
