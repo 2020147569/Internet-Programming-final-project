@@ -221,7 +221,7 @@ function navigate(x, y){
 
       // 1. 지도 띄우기
       map = new Tmapv2.Map("map", {
-        center : new Tmapv2.LatLng(37.570028, 126.989072),
+        center : new Tmapv2.LatLng(currentY, currentX),
         width : "100%",
         height : "400px",
         zoom : 15,
@@ -242,7 +242,7 @@ function navigate(x, y){
       // 도착
       marker_e = new Tmapv2.Marker(
           {
-            position : new Tmapv2.LatLng(currentY, currentX),
+            position : new Tmapv2.LatLng(y, x),
             icon : ECTimageSrc,
             iconSize : new Tmapv2.Size(30, 30),
             map : map
