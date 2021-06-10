@@ -6,7 +6,7 @@
 .info .close {position: absolute;top: 10px;right: 10px;color: #888;width: 17px;height: 17px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
 .info .close:hover {cursor: pointer;}
 .info .body {position: relative;overflow:hidden; text-align: left;}
-.info .desc {position: relative;margin: 13px 0 0 13px;height: 340px; overflow: auto;text-overflow: ellipsis;white-space: nowrap;}
+.info .desc {position: relative;margin: 13px 0 0 13px;height: 340px; overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
 .navigation_button {font-size: 11px;background-color: #777;margin-top: -2px; border-radius: 10%; width: 50%; }
 .info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
 .info .link {color: #5085BB;}
