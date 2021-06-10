@@ -101,8 +101,11 @@ function data_marker (data) {
         var titleContent = document.createElement('div');
         titleContent.setAttribute("class", "title");
         titleContent.innerHTML = positions[i].place_name;
+        titleContent.id = 'title_' + i;
 
         content1.appendChild(titleContent);
+
+        var j = titleContent.id.slice(6);
 
         var closeContent = document.createElement('div');
         closeContent.setAttribute("class", "close");
@@ -123,7 +126,7 @@ function data_marker (data) {
         var ellipsisContent = document.createElement('div');
         ellipsisContent.setAttribute("class", "ellipsis");
 
-        var elli = "주소: " + positions[i].road_address_name;
+        var elli = "주소: " + positions[j].road_address_name;
         ellipsisContent.innerHTML = elli;
 
         descContent.appendChild(ellipsisContent);
@@ -132,7 +135,7 @@ function data_marker (data) {
         urlContent.setAttribute("class", "ellipsis");
 
         var urlPlace = document.createElement('a');
-        urlPlace.setAttribute("href", positions[i].place_url);
+        urlPlace.setAttribute("href", positions[j].place_url);
         urlPlace.innerHTML = "장소 정보 url";
 
 
@@ -145,7 +148,7 @@ function data_marker (data) {
         ////////navi
         var naviContent = document.createElement('div');
         naviContent.setAttribute("class", "navigation_button");
-        var navipara = "navigate(" + positions[i].x + "," + positions[i].y +")";
+        var navipara = "navigate(" + positions[j].x + "," + positions[j].y +")";
 
         naviContent.setAttribute("onclick", navipara);
         naviContent.innerHTML = "길찾기 안내 시작";
@@ -170,7 +173,7 @@ function data_marker (data) {
             overlay.setMap(null);     
         }
 
-        overlays[i] = overlay;
+        overlays[j] = overlay;
     }
 }
 
