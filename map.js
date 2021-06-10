@@ -223,7 +223,7 @@ function navigate(x, y){
 	var resultdrawArr = [];
 
       // 1. 지도 띄우기
-      var map = new Tmapv2.Map("map", {
+      var map1 = new Tmapv2.Map("map", {
         center : new Tmapv2.LatLng(currentY, currentX),
         width : "100%",
         height : "100%",
@@ -239,7 +239,7 @@ function navigate(x, y){
             position : new Tmapv2.LatLng(currentY, currentX),
             icon : nowSrc,
             iconSize : new Tmapv2.Size(30, 30),
-            map : map
+            map : map1
           });
   
       // 도착
@@ -248,7 +248,7 @@ function navigate(x, y){
             position : new Tmapv2.LatLng(y, x),
             icon : ECTimageSrc,
             iconSize : new Tmapv2.Size(30, 30),
-            map : map
+            map : map1
           });
   
       // 3. 경로탐색 API 사용요청
@@ -357,7 +357,7 @@ function navigate(x, y){
                             routeInfoObj.lng),
                         icon : routeInfoObj.markerImage,
                         iconSize : size,
-                        map : map
+                        map : map1
                       });
                 }
               }//for문 [E]
@@ -371,11 +371,6 @@ function navigate(x, y){
           });
   
     }
-  
-    function addComma(num) {
-      var regexp = /\B(?=(\d{3})+(?!\d))/g;
-      return num.toString().replace(regexp, ',');
-    }
     
     function drawLine(arrPoint) {
       var polyline_;
@@ -384,7 +379,7 @@ function navigate(x, y){
         path : arrPoint,
         strokeColor : "#DD0000",
         strokeWeight : 6,
-        map : map
+        map : map1
       });
       resultdrawArr.push(polyline_);
     }
