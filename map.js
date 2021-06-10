@@ -108,7 +108,7 @@ function data_marker (data) {
 
         var closeContent = document.createElement('div');
         closeContent.setAttribute("class", "close");
-        closeContent.setAttribute("onclick", "closeOverlay()");
+        closeContent.setAttribute("id", "close_" + i);
 
         titleContent.appendChild(closeContent);
 
@@ -167,12 +167,17 @@ function data_marker (data) {
             overlays[this.toString()].setMap(map);
             overlays[this.toString()].setVisible(true);
         });
-
-        function closeOverlay() {
-            overlay.setMap(null);     
-        }
-
+        
         overlays[i] = overlay;
+    }
+}
+
+window.onload = function () {
+    var closeoverlay_div = document.querySelectorAll("div.close");
+    for (var j = 0; j < 20; j++) {
+        closeoverlay_div[j].addEventListener("click", function () {
+            overlays[parseInt(closeoverlay_div[j].slice(6))].setMap(null);
+        });
     }
 }
 
