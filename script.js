@@ -222,7 +222,6 @@ function data_display (data) {
         div[i] = document.createElement("div");
         div[i].className = "data_div";
         div[i].innerHTML = "<strong>" + data[i].place_name + "</strong><br>" + data[i].address_name;
-        if (data[i].road_address_name != "") div[i].innerHTML += " (" + data[i].road_address_name + ")";
         div[i].id = "data_" + String(i);
         if (i == 19) div[i].style.margin = "0";
         div[i].addEventListener("click", function () {
