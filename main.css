@@ -250,6 +250,21 @@ div.data_div::-webkit-scrollbar {
     display: none;
 }*/
 
+/* back_to_map */
+a#back_to_map {
+    position: fixed;
+    top: 20vh;
+    left: 3vw;
+    text-decoration: none;
+    font-size: 4em;
+    color: #96DFD8;
+    display: none;
+}
+
+a#back_to_map:hover {
+    color: white;
+}
+
 /* map */
 
 div#map {

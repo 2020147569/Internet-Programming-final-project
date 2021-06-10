@@ -241,3 +241,17 @@ function display_init () {
     data_display_div.id = "data_display_div";
     footer.appendChild(data_display_div);
 }
+
+function delete_nav () {
+    nav = document.getElementById("map");
+    while (nav.firstChild) {
+        nav.removeChild(nav.firstChild);
+    }
+
+    display_map();
+    var data = localStorage.getItem('item');
+    data_marker(data);
+
+    document.getElementById("result").style.display = "none";
+    document.getElementById("back_to_map").style.display = "none";
+}

@@ -98,8 +98,6 @@ function data_marker (data) {
         markers[i] = marker;
         marker.toString = function myfunc(){return i;}
 
-
-
         var content = document.createElement('div');
         content.setAttribute("class", "wrap");
         
@@ -222,8 +220,8 @@ function navigate(x, y){
     var marker_e = new Tmapv2.Marker(
     {
         position : new Tmapv2.LatLng(y, x),
-        icon : ECTimageSrc,
-        iconSize : new Tmapv2.Size(30, 30),
+        icon : ENDSRC,
+        iconSize : new Tmapv2.Size(40, 40),
         map : map
     });
   
@@ -345,6 +343,7 @@ function navigate(x, y){
     });
 
     $("#result").css("display", "block");
+    $("back_to_map").css("display", "block");
 }
     
 function drawLine(arrPoint) {
