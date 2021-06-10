@@ -227,7 +227,7 @@ function data_display (data) {
         div[i].className = "data_div";
         div[i].innerHTML = "<strong>" + data[i].place_name + "</strong><br>" + data[i].address_name;
         div[i].id = "data_" + String(i);
-        if (i == 19) div[i].style.margin = "0";
+        if (i == 19 || i == data.length - 1) div[i].style.margin = "0";
         div[i].addEventListener("click", function () {
             let count = this.id.slice(5);
             var movDataLatLon = new kakao.maps.LatLng(data[count].y, data[count].x);
@@ -253,7 +253,6 @@ function delete_nav () {
     }
 
     display_map();
-    console.log(JSON.stringify(store_data));
     data_marker(store_data);
 
     document.getElementById("result").style.display = "none";

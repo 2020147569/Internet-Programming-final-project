@@ -226,10 +226,6 @@ div#data_display_div {
     white-space: nowrap;
 }
 
-div#data_display_div::-webkit-scrollbar {
-    display: none;
-}
-
 div.data_div {
     width: 100%;
     height: 10vh;
@@ -242,10 +238,6 @@ div.data_div {
     display: inline-block;
 }
 
-div.data_div::-webkit-scrollbar {
-    display: none;
-}
-
 /*label#zerothLabel {
     display: none;
 }*/
@@ -253,21 +245,21 @@ div.data_div::-webkit-scrollbar {
 /* back_to_map */
 a#back_to_map {
     position: fixed;
-    top: 20vh;
-    left: 3vw;
+    top: 15vh;
+    left: 4vw;
     text-decoration: none;
     font-size: 4em;
-    color: #96DFD8;
+    font-weight: 1000;
+    color: black;
     z-index: 4;
     display: none;
 }
 
 a#back_to_map:hover {
-    color: white;
+    color: red;
 }
 
 /* map */
-
 div#map {
     width: 100%;
     height: 70vh;
@@ -277,7 +269,6 @@ div#map {
 }
 
 /* result */
-
 div#result {
     font-family: "SCDream3";
     position: fixed;

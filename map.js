@@ -247,7 +247,7 @@ function navigate(x, y){
             //결과 출력
             var tDistance = "총 거리&nbsp; : "
                 + (resultData[0].properties.totalDistance)
-                    .toFixed(1) + "m";
+                    .toFixed(0) + "m";
             var tTime = " 예상 시간 : "
                 + ((resultData[0].properties.totalTime) / 60)
                     .toFixed(0) + "분";
