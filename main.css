@@ -260,6 +260,18 @@ div#map {
     z-index: 0;
 }
 
+/* result */
+
+div#result {
+    position: fixed;
+    top: 62vh;
+    left: 4vw;
+    width: 40vw;
+    height: 20vh;
+    background-color: #96DFD8;
+    display: none;
+}
+
 /* loading */
 
 div#loading {
