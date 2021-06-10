@@ -211,7 +211,7 @@ else{
 function navigate(x, y){
   for(let i = 0; i < position_size; i ++){
     markers[i].setMap(null);
-    overlays.setMap(null);
+    overlays[i].setMap(null);
 }
 
 function searchPubTransPathAJAX() {
