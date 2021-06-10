@@ -360,27 +360,27 @@ function navigate(x, y){
                 }
             }//for문 [E]
             drawLine(drawInfoArr);
-            },
-            error : function(request, status, error) {
-              console.log("code:" + request.status + "\n"
-                  + "message:" + request.responseText + "\n"
-                  + "error:" + error);
-            }
-        });
+        },
+        error : function(request, status, error) {
+            console.log("code:" + request.status + "\n"
+                + "message:" + request.responseText + "\n"
+                + "error:" + error);
+        }
+    });
   
-    }
+}
     
-    function drawLine(arrPoint) {
-        var polyline_;
+function drawLine(arrPoint) {
+    var polyline_;
   
-        polyline_ = new Tmapv2.Polyline({
-            path : arrPoint,
-            strokeColor : "#DD0000",
-            strokeWeight : 6,
-            map : map1
-        });
-        resultdrawArr.push(polyline_);
-    }
+    polyline_ = new Tmapv2.Polyline({
+        path : arrPoint,
+        strokeColor : "#DD0000",
+        strokeWeight : 6,
+        map : map1
+    });
+    resultdrawArr.push(polyline_);
+}
 
 
 
