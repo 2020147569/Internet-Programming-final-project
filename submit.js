@@ -3,7 +3,7 @@ $("#submitButton").click(function () {
     $("map").empty();
     display_map();
     $("#result").css("display", "none");
-    $("back_to_map").css("display", "none");
+    $("#back_to_map").css("display", "none");
 
     const personnel = $("input[name=personnel]").val();
     var from = $("input[name=from]").val();
@@ -78,9 +78,6 @@ $("#submitButton").click(function () {
                         if(data.length == 0){
                             window.alert("No data matches the request");
                         } else{
-                            localStorage.clear();
-                            localStorage.setItem('item', data);
-
                             data_display(data);
                             data_marker(data);
                         }

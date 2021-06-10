@@ -210,7 +210,11 @@ function zerothCheck () {
 
 window.addEventListener("DOMContentLoaded", checkAll, false);
 
+var store_data;
+
 function data_display (data) {
+    store_data = data;
+
     display_init();
 
     const footer = document.querySelector("footer");
@@ -249,8 +253,8 @@ function delete_nav () {
     }
 
     display_map();
-    var data = localStorage.getItem('item');
-    data_marker(data);
+    console.log(JSON.stringify(store_data));
+    data_marker(store_data);
 
     document.getElementById("result").style.display = "none";
     document.getElementById("back_to_map").style.display = "none";
