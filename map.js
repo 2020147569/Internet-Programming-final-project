@@ -190,7 +190,8 @@ function navigate(x, y){
         markers[i].setMap(null);
         overlays[i].setMap(null);
     }
-  //이전 맵 삭제
+    
+    //이전 맵 삭제
     while (mapContainer.firstChild) {
         mapContainer.removeChild(mapContainer.firstChild);
     }
@@ -198,7 +199,7 @@ function navigate(x, y){
 	  var drawInfoArr = [];
 	  var resultdrawArr = [];
 
-      // 1. 지도 띄우기
+    // 1. 지도 띄우기
     map = new Tmapv2.Map("map", {
         center : new Tmapv2.LatLng(currentY, currentX),
         width : "100%",
@@ -208,8 +209,8 @@ function navigate(x, y){
         scrollwheel : true
     });
   
-      // 2. 시작, 도착 심볼찍기
-      // 시작
+    // 2. 시작, 도착 심볼찍기
+    // 시작
     var marker_s = new Tmapv2.Marker(
     {
         position : new Tmapv2.LatLng(currentY, currentX),
@@ -218,7 +219,7 @@ function navigate(x, y){
         map : map
     });
   
-      // 도착
+    // 도착
     var marker_e = new Tmapv2.Marker(
     {
         position : new Tmapv2.LatLng(y, x),
@@ -227,7 +228,7 @@ function navigate(x, y){
         map : map
     });
   
-      // 3. 경로탐색 API 사용요청
+    // 3. 경로탐색 API 사용요청
     $.ajax({
         method : "POST",
         url : "https://apis.openapi.sk.com/tmap/routes/pedestrian?version=1&format=json&callback=result",
@@ -246,7 +247,7 @@ function navigate(x, y){
         success : function(response) {
             var resultData = response.features;
   
-              //결과 출력
+            //결과 출력
             var tDistance = "총 거리 : "
                 + ((resultData[0].properties.totalDistance) / 1000)
                     .toFixed(1) + "km,";
@@ -256,7 +257,7 @@ function navigate(x, y){
   
             $("#result").text(tDistance + tTime);
               
-              //기존 그려진 라인 & 마커가 있다면 초기화
+            //기존 그려진 라인 & 마커가 있다면 초기화
             if (resultdrawArr.length > 0) {
                 for ( var i in resultdrawArr) {
                     resultdrawArr[i]
@@ -275,17 +276,17 @@ function navigate(x, y){
   
                 if (geometry.type == "LineString") {
                     for ( var j in geometry.coordinates) {
-                    // 경로들의 결과값(구간)들을 포인트 객체로 변환 
+                        // 경로들의 결과값(구간)들을 포인트 객체로 변환 
                         var latlng = new Tmapv2.Point(
                             geometry.coordinates[j][0],
                             geometry.coordinates[j][1]);
-                    // 포인트 객체를 받아 좌표값으로 변환
+                        // 포인트 객체를 받아 좌표값으로 변환
                         var convertPoint = new Tmapv2.Projection.convertEPSG3857ToWGS84GEO(latlng);
-                    // 포인트객체의 정보로 좌표값 변환 객체로 저장
+                        // 포인트객체의 정보로 좌표값 변환 객체로 저장
                         var convertChange = new Tmapv2.LatLng(
                             convertPoint._lat,
                             convertPoint._lng);
-                    // 배열에 담기
+                        // 배열에 담기
                         drawInfoArr.push(convertChange);
                     }
                 } else {
@@ -307,12 +308,12 @@ function navigate(x, y){
                         size = new Tmapv2.Size(8, 8);
                     }
   
-                  // 경로들의 결과값들을 포인트 객체로 변환 
+                    // 경로들의 결과값들을 포인트 객체로 변환 
                     var latlon = new Tmapv2.Point(
                         geometry.coordinates[0],
                         geometry.coordinates[1]);
   
-                  // 포인트 객체를 받아 좌표값으로 다시 변환
+                    // 포인트 객체를 받아 좌표값으로 다시 변환
                     var convertPoint = new Tmapv2.Projection.convertEPSG3857ToWGS84GEO(
                         latlon);
   
@@ -323,7 +324,7 @@ function navigate(x, y){
                         pointType : pType
                     };
   
-                  // Marker 추가
+                    // Marker 추가
                     var marker_p = new Tmapv2.Marker(
                     {
                         position : new Tmapv2.LatLng(
@@ -334,7 +335,7 @@ function navigate(x, y){
                         map : map
                     });
                 }
-            }//for문 [E]
+            } //for문 [E]
             drawLine(drawInfoArr);
         },
         error : function(request, status, error) {
