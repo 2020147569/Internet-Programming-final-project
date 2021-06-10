@@ -48,143 +48,133 @@ if (navigator.geolocation) {
 
 var overlays = [];
 var markers = [];
-var positions = [{
-    "place_name": "카카오프렌즈 코엑스점",
-    "distance": "418",
-    "place_url": "http://place.map.kakao.com/26338954",
-    "category_name": "가정,생활 > 문구,사무용품 > 디자인문구 > 카카오프렌즈",
-    "address_name": "서울 강남구 삼성동 159",
-    "road_address_name": "서울 강남구 영동대로 513",
-    "id": "26338954",
-    "phone": "02-6002-1880",
-    "category_group_code": "",
-    "category_group_name": "",
-    "x": "127.05902969025047",
-    "y": "37.51207412593136"
-    }];
+var positions = [];
 
 var FoodimageSrc = "FOODMARKER.png";
 var ECTimageSrc = "ECTMARKER.png";
 
-var position_size;
+function data_marker (data) {
+    positions = data;
 
-if(positions.length < 20){
-    position_size = positions.length;
-}
-else{
-    position_size = 20;
-}
+    var position_size;
 
-
-for(let i = 0; i < position_size; i ++){
-    var poscor = new kakao.maps.LatLng(positions[i].y, positions[i].x);
-
-    var imageSize = new kakao.maps.Size(40, 40);
-
-    var category = positions[i].category_name;
-
-    var index = category.indexOf(" >");
-
-    if(category.slice(0,index) == "음식점"){
-        var src = FoodimgageSrc;
+    if(positions.length < 20){
+        position_size = positions.length;
     }
-    else {
-        var src = ECTimageSrc;
+    else{
+        position_size = 20;
     }
 
-    var markerImage = new kakao.maps.MarkerImage(src, imageSize); 
+    for(let i = 0; i < position_size; i ++){
+        var poscor = new kakao.maps.LatLng(positions[i].y, positions[i].x);
 
-    var marker = new kakao.maps.Marker({
-        map: map, // 마커를 표시할 지도
-        position: poscor, // 마커를 표시할 위치
-        title : positions[i].place_name, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-        image : markerImage,
-        clickable : true
-        }); // 마커 이미지 
+        var imageSize = new kakao.maps.Size(40, 40);
 
-    markers[i] = marker;
+        var category = positions[i].category_name;
 
-    var content = document.createElement('div');
-    content.setAttribute("class", "wrap");
-    
-    var content1 = document.createElement('div');
-    content1.setAttribute("class", "info")
-    
-    content.appendChild(content1);
+        var index = category.indexOf(" >");
 
-    var titleContent = document.createElement('div');
-    titleContent.setAttribute("class", "title");
-    titleContent.innerHTML = positions[i].place_name;
+        if(category.slice(0,index) == "음식점"){
+            var src = FoodimgageSrc;
+        }
+        else {
+            var src = ECTimageSrc;
+        }
 
-    content1.appendChild(titleContent);
+        var markerImage = new kakao.maps.MarkerImage(src, imageSize); 
 
-    var closeContent = document.createElement('div');
-    closeContent.setAttribute("class", "close");
-    closeContent.setAttribute("onclick", "closeOverlay()");
+        var marker = new kakao.maps.Marker({
+            map: map, // 마커를 표시할 지도
+            position: poscor, // 마커를 표시할 위치
+            title : positions[i].place_name, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+            image : markerImage,
+            clickable : true
+            }); // 마커 이미지 
 
-    titleContent.appendChild(closeContent);
+        markers[i] = marker;
 
-    var bodyContent = document.createElement('div');
-    bodyContent.setAttribute("class", "body")
+        var content = document.createElement('div');
+        content.setAttribute("class", "wrap");
+        
+        var content1 = document.createElement('div');
+        content1.setAttribute("class", "info")
+        
+        content.appendChild(content1);
 
-    content1.appendChild(bodyContent);
+        var titleContent = document.createElement('div');
+        titleContent.setAttribute("class", "title");
+        titleContent.innerHTML = positions[i].place_name;
 
-    var descContent = document.createElement('div');
-    descContent.setAttribute("class", "desc");
+        content1.appendChild(titleContent);
 
-    bodyContent.appendChild(descContent);
+        var closeContent = document.createElement('div');
+        closeContent.setAttribute("class", "close");
+        closeContent.setAttribute("onclick", "closeOverlay()");
 
-    var ellipsisContent = document.createElement('div');
-    ellipsisContent.setAttribute("class", "ellipsis");
+        titleContent.appendChild(closeContent);
 
-    var elli = "주소: " + positions[i].road_address_name;
-    ellipsisContent.innerHTML = elli;
+        var bodyContent = document.createElement('div');
+        bodyContent.setAttribute("class", "body")
 
-    descContent.appendChild(ellipsisContent);
-    /////////url
-    var urlContent = document.createElement('div');
-    urlContent.setAttribute("class", "ellipsis");
+        content1.appendChild(bodyContent);
 
-    var urlPlace = document.createElement('a');
-    urlPlace.setAttribute("href", positions[i].place_url);
-    urlPlace.innerHTML = "장소 정보 url";
+        var descContent = document.createElement('div');
+        descContent.setAttribute("class", "desc");
 
+        bodyContent.appendChild(descContent);
 
-    urlContent.appendChild(urlPlace);
-    //////////
+        var ellipsisContent = document.createElement('div');
+        ellipsisContent.setAttribute("class", "ellipsis");
 
-    descContent.appendChild(urlContent);
+        var elli = "주소: " + positions[i].road_address_name;
+        ellipsisContent.innerHTML = elli;
 
+        descContent.appendChild(ellipsisContent);
+        /////////url
+        var urlContent = document.createElement('div');
+        urlContent.setAttribute("class", "ellipsis");
 
-    ////////navi
-    var naviContent = document.createElement('div');
-    naviContent.setAttribute("class", "navigation_button");
-    var navipara = "navigate(" + positions[i].x + "," + positions[i].y +")";
-
-    naviContent.setAttribute("onclick", navipara);
-    naviContent.innerHTML = "길찾기 안내 시작";
-
-    descContent.appendChild(naviContent);
+        var urlPlace = document.createElement('a');
+        urlPlace.setAttribute("href", positions[i].place_url);
+        urlPlace.innerHTML = "장소 정보 url";
 
 
-    var overlay = new kakao.maps.CustomOverlay({
-    content: content,
-    map: map,
-    position: marker.getPosition(),       
-    });
+        urlContent.appendChild(urlPlace);
+        //////////
 
-    overlay.setVisible(false);  
+        descContent.appendChild(urlContent);
 
-    kakao.maps.event.addListener(marker, 'click', function() {
-        overlay.setMap(map);
-        overlay.setVisible(true);
-    });
 
-    function closeOverlay() {
-        overlay.setMap(null);     
+        ////////navi
+        var naviContent = document.createElement('div');
+        naviContent.setAttribute("class", "navigation_button");
+        var navipara = "navigate(" + positions[i].x + "," + positions[i].y +")";
+
+        naviContent.setAttribute("onclick", navipara);
+        naviContent.innerHTML = "길찾기 안내 시작";
+
+        descContent.appendChild(naviContent);
+
+
+        var overlay = new kakao.maps.CustomOverlay({
+        content: content,
+        map: map,
+        position: marker.getPosition(),       
+        });
+
+        overlay.setVisible(false);  
+
+        kakao.maps.event.addListener(marker, 'click', function() {
+            overlay.setMap(map);
+            overlay.setVisible(true);
+        });
+
+        function closeOverlay() {
+            overlay.setMap(null);     
+        }
+
+        overlays[i] = overlay;
     }
-
-    overlays[i] = overlay;
 }
 
 function navigate(x, y){

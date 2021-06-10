@@ -75,6 +75,7 @@ $("#submitButton").click(function () {
                             window.alert("No data matches the request");
                         } else{
                             data_display(data);
+                            data_marker(data);
                         }
                     },
                     error: function(){
