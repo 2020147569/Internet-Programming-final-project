@@ -254,7 +254,7 @@ function navigate(x, y){
                 + ((resultData[0].properties.totalTime) / 60)
                     .toFixed(0) + "분";
   
-            $("#result").html("<strong>길찾기 정보</strong><br>" + tDistance + "<br>" + tTime);
+            $("#result").html("<strong>길찾기 정보</strong><br><br>" + tDistance + "<br>" + tTime);
               
             //기존 그려진 라인 & 마커가 있다면 초기화
             if (resultdrawArr.length > 0) {
