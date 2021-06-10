@@ -6,7 +6,7 @@ $("#submitButton").click(function () {
     const to = $("input[name=to]").val();
     const to_hh = parseInt(to.substring(0, 2));
     const to_mm = parseInt(to.substring(3));
-    const preference = $("input[name=preference]").serialize();
+    const preferencetext = $("input[name=preference]").serialize();
     if (personnel < 1 || personnel > 4) {
         window.alert("인원은 최소 1명, 최대 4명으로 제한됩니다!");
     } else if ((from_hh < 9 || from_hh > 21) && !(from_hh == 22 && from_mm == 0)) {
@@ -15,7 +15,7 @@ $("#submitButton").click(function () {
         window.alert("시간은 09:00 부터 22:00 까지로 제한됩니다!");
     } else if ((from_hh * 60 + from_mm) - (to_hh * 60 + to_mm) >= 0) {
         window.alert("시작 시간이 끝 시간보다 앞서야 합니다!");
-    } else if (preference == "") {
+    } else if (preferencetext == "") {
         window.alert("선호도를 선택하세요!");
     } else  {
         document.getElementById("loading").style.width = "100%";
@@ -53,6 +53,9 @@ $("#submitButton").click(function () {
             navigator.geolocation.getCurrentPosition(function (position) {
                 var latitude = position.coords.latitude;
                 var longitude = position.coords.longitude;
+                
+                var preference = decodeURI(preferencetext).split("&preference=");
+                preference[0] = preference[0].slice(11);
 
                 $.ajax ({
                     url: "https://pacific-garden-17851.herokuapp.com/",
