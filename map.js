@@ -9,6 +9,9 @@ var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니
 var nowSrc = "REDSPOT.png"
 
 
+var currentX;
+var currentY;
+
 if (navigator.geolocation) {
     
     // GeoLocation을 이용해서 접속 위치를 얻어옵니다
@@ -17,6 +20,9 @@ if (navigator.geolocation) {
         var lat = position.coords.latitude, // 위도
             lon = position.coords.longitude; // 경도
         
+        currentX = lon;
+        currentY = lat;
+
         var locPosition = new kakao.maps.LatLng(lat, lon); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
         var imageSize = new kakao.maps.Size(20, 20);
         var nowimageSrc = new kakao.maps.MarkerImage(nowSrc, imageSize); 
@@ -57,7 +63,17 @@ var positions = [{
 var FoodimageSrc = "FOODMARKER.png";
 var ECTimageSrc = "ECTMARKER.png";
 
-  for(let i = 0; i < positions.length; i ++){
+var position_size;
+
+if(positions.length < 20){
+  position_size = positions.length;
+}
+else{
+  position_size = 20;
+}
+
+
+  for(let i = 0; i < position_size; i ++){
   var poscor = new kakao.maps.LatLng(positions[i].y, positions[i].x);
 
   var imageSize = new kakao.maps.Size(40, 40);
@@ -151,7 +167,7 @@ var ECTimageSrc = "ECTMARKER.png";
 
     var urlPlace = document.createElement('a');
     urlPlace.setAttribute("href", positions[i].place_url);
-    urlPlace.innerHTML = "장소 정보: " + positions[i].place_url;
+    urlPlace.innerHTML = "장소 정보 url";
 
 
     urlContent.appendChild(urlPlace);
@@ -163,7 +179,7 @@ var ECTimageSrc = "ECTMARKER.png";
     ////////navi
     var naviContent = document.createElement('div');
     naviContent.setAttribute("class", "navigation_button");
-    naviContent.setAttribute("onclick", "navigate()");
+    naviContent.setAttribute("onclick", "navigate(" + positions[i].x + "," + positions[i].y +")");
     naviContent.innerHTML = "길찾기 안내 시작";
 
     descContent.appendChild(naviContent);
@@ -189,6 +205,151 @@ var ECTimageSrc = "ECTMARKER.png";
     overlays[i] = overlay;
   }
 
-function navigate(p){
+function navigate(x, y){
+  for(let i = 0; i < position_size; i ++){
+    markers[i].setMap(null);
+    overlays.setMap(null);
+}
 
+function searchPubTransPathAJAX() {
+  var xhr = new XMLHttpRequest();
+  //ODsay apiKey 입력
+  var url = "https://api.odsay.com/v1/api/searchPubTransPath?SX="+currentX+"&SY="+currentY+"&EX="+x+"&EY="+y+"&apiKey=fdyJ99EmG5fIOsXDYCez3A";
+  xhr.open("GET", url, true);
+  xhr.send();
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState == 4 && xhr.status == 200) {
+    console.log( JSON.parse(xhr.responseText) ); // <- xhr.responseText 로 결과를 가져올 수 있음
+    //노선그래픽 데이터 호출
+    callMapObjApiAJAX((JSON.parse(xhr.responseText))["result"]["path"][0].info.mapObj);
+    }
+  }
+}
+
+//길찾기 API 호출
+searchPubTransPathAJAX();
+
+function callMapObjApiAJAX(mabObj){
+  var xhr = new XMLHttpRequest();
+  //ODsay apiKey 입력
+  var url = "https://api.odsay.com/v1/api/loadLane?mapObject=0:0@"+mabObj+"&apiKey=fdyJ99EmG5fIOsXDYCez3A";
+  xhr.open("GET", url, true);
+  xhr.send();
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState == 4 && xhr.status == 200) {
+      var resultJsonData = JSON.parse(xhr.responseText);
+      drawkakaoMarker(currentX,currentY);					// 출발지 마커 표시
+      drawkakaoMarker(x,y);					// 도착지 마커 표시
+      drawkakaoPolyLine(resultJsonData);		// 노선그래픽데이터 지도위 표시
+      // boundary 데이터가 있을경우, 해당 boundary로 지도이동
+      if(resultJsonData.result.boundary){
+          var boundary = new kakao.maps.LatLngBounds(
+                      new kakao.maps.LatLng(resultJsonData.result.boundary.top, resultJsonData.result.boundary.left),
+                      new kakao.maps.LatLng(resultJsonData.result.boundary.bottom, resultJsonData.result.boundary.right)
+                      );
+          map.panToBounds(boundary);
+      }
+    }
+  }
+}
+
+// 지도위 마커 표시해주는 함수
+function drawkakaoMarker(x,y){
+  var marker = new kakao.maps.Marker({
+      position: new kakao.maps.LatLng(y, x),
+      map: map,
+      image : markerImage
+  });
+}
+
+// 노선그래픽 데이터를 이용하여 지도위 폴리라인 그려주는 함수
+function drawkakaoPolyLine(data){
+  var lineArray;
+  
+  for(var i = 0 ; i < data.result.lane.length; i++){
+    for(var j=0 ; j <data.result.lane[i].section.length; j++){
+      lineArray = null;
+      lineArray = new Array();
+      for(var k=0 ; k < data.result.lane[i].section[j].graphPos.length; k++){
+        lineArray.push(new kakao.maps.LatLng(data.result.lane[i].section[j].graphPos[k].y, data.result.lane[i].section[j].graphPos[k].x));
+      }
+      
+      if(data.result.lane[i].type == 1){
+        var polyline = new kakao.maps.Polyline({
+            map: map,
+            path: lineArray,
+            strokeWeight: 3,
+            strokeColor: '#003499'
+        });
+      }else if(data.result.lane[i].type == 2){
+        var polyline = new kakao.maps.Polyline({
+            map: map,
+            path: lineArray,
+            strokeWeight: 3,
+            strokeColor: '#37b42d'
+        });
+      }else if(data.result.lane[i].type == 3){
+        var polyline = new kakao.maps.Polyline({
+            map: map,
+            path: lineArray,
+            strokeWeight: 3,
+            strokeColor: '#3B9F37'
+        });
+      }else if(data.result.lane[i].type == 4){
+        var polyline = new kakao.maps.Polyline({
+            map: map,
+            path: lineArray,
+            strokeWeight: 3,
+            strokeColor: '#3165A8'          
+          });
+      }else if(data.result.lane[i].type == 5){
+        var polyline = new kakao.maps.Polyline({
+          map: map,
+          path: lineArray,
+          strokeWeight: 3,
+          strokeColor: '#703E8C'
+        });
+          
+      }else if(data.result.lane[i].type == 6){
+        var polyline = new kakao.maps.Polyline({
+          map: map,
+          path: lineArray,
+          strokeWeight: 3,
+          strokeColor: '#904D23'
+        });
+      }else if(data.result.lane[i].type == 7){
+        var polyline = new kakao.maps.Polyline({
+            map: map,
+            path: lineArray,
+            strokeWeight: 3,
+            strokeColor: '#5B692E'
+        });
+      }else if(data.result.lane[i].type == 8){
+        var polyline = new kakao.maps.Polyline({
+            map: map,
+            path: lineArray,
+            strokeWeight: 3,
+            strokeColor: '#C82363'
+        });
+      }
+      else if(data.result.lane[i].type == 9){
+        var polyline = new kakao.maps.Polyline({
+            map: map,
+            path: lineArray,
+            strokeWeight: 3,
+            strokeColor: '#B39627'
+        });}
+      else{
+        var polyline = new kakao.maps.Polyline({
+          map: map,
+          path: lineArray,
+          strokeWeight: 3
+        });
+      }
+
+
+
+    }
+  }
+}
 }
