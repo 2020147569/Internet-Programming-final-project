@@ -101,30 +101,6 @@ for(let i = 0; i < position_size; i ++){
 
     markers[i] = marker;
 
-  /*/커스텀 오버레이 생성
-  var content = '<div class="wrap">' + 
-  '    <div class="info">' + 
-  '        <div class="title">' + 
-  positions[i].place_name + 
-  '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' + 
-  '        </div>' + 
-  '        <div class="body">'+
-  '            <div class="desc">' + 
-  '                <div class="ellipsis">'+
-  '주소: ' +
-  positions[i].road_address_name  +
-  '                             </div>' +
-  '                <div><a href="'+
-  positions[i].place_url  +
-  '" target="_blank" class="link">홈페이지</a></div>' + 
-  '<div class = "navigation_button"><a href = "navigation.html">길찾기 안내 시작</a></div>' +//길찾기 버튼
-  '            </div>' + 
-  '        </div>' + 
-  '    </div>' +    
-  '</div>';
-  */
-
-
     var content = document.createElement('div');
     content.setAttribute("class", "wrap");
     
@@ -223,7 +199,7 @@ function navigate(x, y){
 	  var resultdrawArr = [];
 
       // 1. 지도 띄우기
-    var map1 = new Tmapv2.Map("map", {
+    map = new Tmapv2.Map("map", {
         center : new Tmapv2.LatLng(currentY, currentX),
         width : "100%",
         height : "100%",
@@ -239,7 +215,7 @@ function navigate(x, y){
         position : new Tmapv2.LatLng(currentY, currentX),
         icon : nowSrc,
         iconSize : new Tmapv2.Size(30, 30),
-        map : map1
+        map : map
     });
   
       // 도착
@@ -248,7 +224,7 @@ function navigate(x, y){
         position : new Tmapv2.LatLng(y, x),
         icon : ECTimageSrc,
         iconSize : new Tmapv2.Size(30, 30),
-        map : map1
+        map : map
     });
   
       // 3. 경로탐색 API 사용요청
@@ -355,7 +331,7 @@ function navigate(x, y){
                             routeInfoObj.lng),
                         icon : routeInfoObj.markerImage,
                         iconSize : size,
-                        map : map1
+                        map : map
                     });
                 }
             }//for문 [E]
@@ -377,7 +353,7 @@ function drawLine(arrPoint) {
         path : arrPoint,
         strokeColor : "#DD0000",
         strokeWeight : 6,
-        map : map1
+        map : map
     });
     resultdrawArr.push(polyline_);
 }
