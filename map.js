@@ -50,13 +50,11 @@ var overlays = [];
 
 var FoodimageSrc = "FOODMARKER.png";
 var ECTimageSrc = "ECTMARKER.png";
-
+var position_size;
 
 function data_marker (data) {
 
     positions = data;
-
-    var position_size;
 
     if(positions.length < 20){
         position_size = positions.length;
