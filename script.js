@@ -215,26 +215,21 @@ function data_display (data) {
 
     const footer = document.querySelector("footer");
     const data_display_div = document.getElementById("data_display_div");
-    
+    var div = [];
+
     for (var i = 0; i < data.length; i++) {
-        if (i >= 20) {
-            break;
-        }
-
-        const div = document.createElement("div");
-        div.className = "data_div";
-        div.innerHTML = "<strong>" + data[i].place_name + "</strong><br>" + data[i].address_name;
-        div.id = "data_" + String(i);
-        
-        if (i == 19) {
-            div.style.margin = "0";
-        }
-
-        div.addEventListener("click", function () {
-            var movDataLatLon = new kakao.maps.LatLng(data[i].y, data[i].x);
+        if (i >= 20) break;
+        div[i] = document.createElement("div");
+        div[i].className = "data_div";
+        div[i].innerHTML = "<strong>" + data[i].place_name + "</strong><br>" + data[i].address_name;
+        div[i].id = "data_" + String(i);
+        if (i == 19) div[i].style.margin = "0";
+        div[i].addEventListener("click", function () {
+            let count = this.id.slice(5);
+            var movDataLatLon = new kakao.maps.LatLng(data[count].y, data[count].x);
             map.panTo(movDataLatLon);
         });
-        data_display_div.appendChild(div);
+        data_display_div.appendChild(div[i]);
     }
 }
 
