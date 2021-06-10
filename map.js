@@ -8,9 +8,6 @@ var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니
 
 var nowSrc = "REDSPOT.png"
 
-var totalMarkerArr = [];
-var drawInfoArr = [];
-var resultdrawArr = [];
 
 var currentX;
 var currentY;
@@ -188,12 +185,15 @@ function navigate(x, y){
     while (mapContainer.firstChild) {
         mapContainer.removeChild(mapContainer.firstChild);
     }
+    var totalMarkerArr = [];
+	  var drawInfoArr = [];
+	  var resultdrawArr = [];
 
     // 1. 지도 띄우기
     map = new Tmapv2.Map("map", {
         center : new Tmapv2.LatLng(currentY, currentX),
         width : "100%",
-        height : "70vh",
+        height : "100%",
         zoom : 15,
         zoomControl : true,
         scrollwheel : true
@@ -348,6 +348,3 @@ function drawLine(arrPoint) {
     });
     resultdrawArr.push(polyline_);
 }
-
-
-
