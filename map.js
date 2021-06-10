@@ -180,8 +180,6 @@ function data_marker (data) {
     }
 }
 
-
-
 function navigate(x, y){
 
     for(let i = 0; i < position_size; i ++){
@@ -248,12 +246,12 @@ function navigate(x, y){
             //결과 출력
             var tDistance = "총 거리 : "
                 + ((resultData[0].properties.totalDistance) / 1000)
-                    .toFixed(1) + "km,";
+                    .toFixed(1) + "km";
             var tTime = " 총 시간 : "
                 + ((resultData[0].properties.totalTime) / 60)
                     .toFixed(0) + "분";
   
-            $("#result").text(tDistance + tTime);
+            $("#result").text("<strong>길찾기 정보</strong><br>" + tDistance + "<br>" + tTime);
               
             //기존 그려진 라인 & 마커가 있다면 초기화
             if (resultdrawArr.length > 0) {
@@ -342,7 +340,8 @@ function navigate(x, y){
                 + "error:" + error);
         }
     });
-  
+
+    $("#result").css("display", "block");
 }
     
 function drawLine(arrPoint) {

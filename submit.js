@@ -2,6 +2,7 @@ $("#submitButton").click(function () {
     $("#sidenav").width("0");
     $("map").empty();
     display_map();
+    $("#result").css("display", "none");
 
     const personnel = $("input[name=personnel]").val();
     var from = $("input[name=from]").val();
