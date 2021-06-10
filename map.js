@@ -51,7 +51,9 @@ var overlays = [];
 var FoodimageSrc = "FOODMARKER.png";
 var ECTimageSrc = "ECTMARKER.png";
 
+
 function data_marker (data) {
+
     positions = data;
 
     var position_size;
@@ -92,6 +94,8 @@ function data_marker (data) {
         markers[i] = marker;
         marker.toString = function myfunc(){return i;}
 
+
+
         var content = document.createElement('div');
         content.setAttribute("class", "wrap");
         
@@ -106,9 +110,19 @@ function data_marker (data) {
 
         content1.appendChild(titleContent);
 
+        var overlay = new kakao.maps.CustomOverlay({
+        content: content,
+        map: map,
+        position: marker.getPosition(),       
+        });
+        overlays[i] = overlay;
+
         var closeContent = document.createElement('div');
         closeContent.setAttribute("class", "close");
-        closeContent.setAttribute("onclick", "closeOverlay()");
+        closeContent.id = "close_" + i;
+        closeContent.addEventListener('click', function(){
+            overlays[this.id.slice(6)].setMap(null);
+        });
 
         titleContent.appendChild(closeContent);
 
@@ -155,12 +169,7 @@ function data_marker (data) {
         descContent.appendChild(naviContent);
 
 
-        var overlay = new kakao.maps.CustomOverlay({
-        content: content,
-        map: map,
-        position: marker.getPosition(),       
-        });
-        overlays[i] = overlay;
+        
         overlay.setVisible(false);  
 
         kakao.maps.event.addListener(marker, 'click', function() {
@@ -168,13 +177,13 @@ function data_marker (data) {
             overlays[this.toString()].setVisible(true);
         });
 
-        function closeOverlay() {
-            overlay.setMap(null);     
-        }
+        
 
         overlays[i] = overlay;
     }
 }
+
+
 
 function navigate(x, y){
 
