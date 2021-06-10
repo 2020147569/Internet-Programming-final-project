@@ -234,7 +234,7 @@ function navigate(x, y){
   
       // 2. 시작, 도착 심볼찍기
       // 시작
-      marker_s = new Tmapv2.Marker(
+      var marker_s = new Tmapv2.Marker(
           {
             position : new Tmapv2.LatLng(currentY, currentX),
             icon : nowSrc,
@@ -243,7 +243,7 @@ function navigate(x, y){
           });
   
       // 도착
-      marker_e = new Tmapv2.Marker(
+      var marker_e = new Tmapv2.Marker(
           {
             position : new Tmapv2.LatLng(y, x),
             icon : ECTimageSrc,
@@ -350,7 +350,7 @@ function navigate(x, y){
                   };
   
                   // Marker 추가
-                  marker_p = new Tmapv2.Marker(
+                  var marker_p = new Tmapv2.Marker(
                       {
                         position : new Tmapv2.LatLng(
                             routeInfoObj.lat,
