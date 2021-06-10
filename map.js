@@ -6,11 +6,13 @@ var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 
 var nowSrc = "REDSPOT.png";
 
+var map;
+
 var currentX;
 var currentY;
 
 function display_map () {
-    var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+    map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 
     if (navigator.geolocation) {
         
