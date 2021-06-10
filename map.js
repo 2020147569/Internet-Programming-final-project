@@ -137,7 +137,7 @@ function data_marker (data) {
         var ellipsisContent = document.createElement('div');
         ellipsisContent.setAttribute("class", "ellipsis");
 
-        var elli = "주소: " + positions[i].road_address_name;
+        var elli = "주소: " + positions[i].address_name;
         ellipsisContent.innerHTML = elli;
 
         descContent.appendChild(ellipsisContent);
