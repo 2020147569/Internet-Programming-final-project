@@ -156,7 +156,7 @@ else{
     bodyContent.appendChild(descContent);
 
     var ellipsisContent = document.createElement('div');
-    ellipsisContent.setAttribute("class", "ellipsis")
+    ellipsisContent.setAttribute("class", "ellipsis");
 
     var elli = "주소: " + positions[i].road_address_name;
     ellipsisContent.innerHTML = elli;
@@ -164,7 +164,7 @@ else{
     descContent.appendChild(ellipsisContent);
     /////////url
     var urlContent = document.createElement('div');
-    urlContent.setAttribute("class", "desc")
+    urlContent.setAttribute("class", "ellipsis");
 
     var urlPlace = document.createElement('a');
     urlPlace.setAttribute("href", positions[i].place_url);
@@ -180,7 +180,9 @@ else{
     ////////navi
     var naviContent = document.createElement('div');
     naviContent.setAttribute("class", "navigation_button");
-    naviContent.setAttribute("onclick", "navigate(" + positions[i].x + "," + positions[i].y +")");
+    var navipara = "navigate(" + positions[i].x + "," + positions[i].y +")";
+
+    naviContent.setAttribute("onclick", navipara);
     naviContent.innerHTML = "길찾기 안내 시작";
 
     descContent.appendChild(naviContent);
