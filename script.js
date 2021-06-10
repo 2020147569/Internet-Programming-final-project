@@ -225,15 +225,15 @@ function data_display (data) {
         div.className = "data_div";
         div.innerHTML = "<strong>" + data[i].place_name + "</strong><br>" + data[i].address_name;
         div.id = "data_" + String(i);
+        div.addEventListener("click", function () {
+            const movDataLatLon = new kakao.maps.LatLng(data[i].y, data[i].x);
+            map.panTo(movDataLatLon);
+        });
         
         if (i == 19) {
             div.style.margin = "0";
         }
 
-        div.addEventListener("click", function () {
-            var movDataLatLon = new kakao.maps.LatLng(data[i].y, data[i].x);
-            map.panTo(movDataLatLon);
-        });
         data_display_div.appendChild(div);
     }
 }
