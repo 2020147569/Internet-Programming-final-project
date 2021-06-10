@@ -151,7 +151,7 @@ var ECTimageSrc = "ECTMARKER.png";
 
     var urlPlace = document.createElement('a');
     urlPlace.setAttribute("href", positions[i].place_url);
-    urlPlace.innerHTML = "홈페이지";
+    urlPlace.innerHTML = "장소 정보: " + positions[i].place_url;
 
 
     urlContent.appendChild(urlPlace);
