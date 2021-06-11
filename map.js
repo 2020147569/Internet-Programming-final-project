@@ -152,6 +152,7 @@ function data_marker (data) {
         var urlPlace = document.createElement('a');
         urlPlace.setAttribute("href", positions[i].place_url);
         urlPlace.innerHTML = "장소 정보 url";
+	urlPlace.setAttribute("target", "_blank");
 
         urlContent.appendChild(urlPlace);
 
